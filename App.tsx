@@ -24,14 +24,7 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-const Hello = () => {
-  return <Text>Hello World</Text>
-}
+import Hello from "./src/components/Hello.tsx";
 
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
