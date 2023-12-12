@@ -1,27 +1,39 @@
-import {Image, StyleSheet, Text, View} from "react-native";
+import {Image, ImageSourcePropType, StyleSheet, Text, View} from "react-native";
 
 type IconRoundedRectangleProps = {
+    iconSource: ImageSourcePropType,
     text: string,
 }
 
 const IconRoundedRectangle = (props: IconRoundedRectangleProps) => {
     return <View style={styles.container}>
         <Image
-            source={require('./../assets/wine_bar.png')}
+            style={styles.icon}
+            source={props.iconSource}
         />
-        <Text>{props.text}</Text>
+        <Text style={styles.text}>{props.text}</Text>
     </View>
 }
 
 const styles = StyleSheet.create({
     container: {
-        alignSelf: "flex-start",
+        alignSelf: "flex-start",    // width fit-content
         flexDirection: "row",
-        padding: 10,
+        alignItems: "center",
+        paddingTop: 2,
+        paddingBottom: 2,
+        paddingLeft: 10,
+        paddingRight: 10,
         borderStyle: "solid",
         borderColor: "#f00",
         borderRadius: 20,
-        borderWidth: 2
+        borderWidth: 1
+    },
+    icon: {
+        marginRight: 5,
+    },
+    text: {
+        fontSize: 10,
     }
 });
 
