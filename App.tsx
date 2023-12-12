@@ -6,7 +6,7 @@ import {
   StatusBar,
 } from 'react-native';
 
-import Hello from "./src/components/Hello.tsx";
+import IconRoundedRectangle from "./src/components/IconRoundedRectangle.tsx";
 
 function App(): React.JSX.Element {
   return (
@@ -14,7 +14,7 @@ function App(): React.JSX.Element {
       <StatusBar/>
       <ScrollView
         contentInsetAdjustmentBehavior="automatic">
-          <Hello></Hello>
+          <IconRoundedRectangle text={"Vin rouge"}></IconRoundedRectangle>
       </ScrollView>
     </SafeAreaView>
   );
