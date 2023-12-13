@@ -1,31 +1,21 @@
 import React from 'react';
+import {NavigationContainer} from "@react-navigation/native";
+import {createNativeStackNavigator} from "@react-navigation/native-stack";
+import Home from "./src/screens/Home.tsx";
 
-import {
-    SafeAreaView,
-    ScrollView,
-    StatusBar, StyleSheet,
-} from 'react-native';
-
-import IconRoundedRectangle from "./src/components/IconRoundedRectangle.tsx";
-import WineRowSummary from "./src/components/WineRowSummary.tsx";
+const Stack = createNativeStackNavigator();
 
 function App(): React.JSX.Element {
-  return (
-    <SafeAreaView>
-      <StatusBar/>
-      <ScrollView
-          style={styles.container}
-        contentInsetAdjustmentBehavior="automatic">
-          <WineRowSummary />
-      </ScrollView>
-    </SafeAreaView>
-  );
-}
+    return (
+        <NavigationContainer>
+            <Stack.Navigator>
+                <Stack.Screen name={"Home"}
+                              component={Home}
+                              options={{title: "Home"}} />
 
-const styles = StyleSheet.create({
-    container: {
-        padding: 10
-    }
-});
+            </Stack.Navigator>
+        </NavigationContainer>
+    );
+}
 
 export default App;
