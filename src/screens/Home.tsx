@@ -3,6 +3,7 @@ import WineRowSummary from "../components/WineRowSummary.tsx";
 import React from "react";
 import { ParamListBase} from "@react-navigation/native";
 import {NativeStackScreenProps} from "@react-navigation/native-stack";
+import CellarFill from "../components/CellarFill.tsx";
 
 const Home = ({navigation}: NativeStackScreenProps<ParamListBase>) => {
     return <SafeAreaView>
@@ -10,6 +11,7 @@ const Home = ({navigation}: NativeStackScreenProps<ParamListBase>) => {
         <ScrollView
             style={styles.container}
             contentInsetAdjustmentBehavior="automatic">
+            <CellarFill />
             <WineRowSummary/>
         </ScrollView>
     </SafeAreaView>
