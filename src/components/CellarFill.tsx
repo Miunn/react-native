@@ -1,9 +1,8 @@
 import {StyleSheet, Text, View} from "react-native";
-import ProgressCircle from "react-native-progress-circle";
 
 const CellarFill = () => {
     return <View>
-        <ProgressCircle
+        {/*<ProgressCircle
             percent={30}
             radius={50}
             borderWidth={8}
@@ -12,7 +11,7 @@ const CellarFill = () => {
             bgColor="#fff"
         >
             <Text style={styles.progressText}>30 %</Text>
-        </ProgressCircle>
+        </ProgressCircle>*/}
     </View>
 }
 

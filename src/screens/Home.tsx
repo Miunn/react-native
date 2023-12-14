@@ -1,20 +1,23 @@
 import {Button, SafeAreaView, ScrollView, StatusBar, StyleSheet} from "react-native";
-import WineRowSummary from "../components/WineRowSummary.tsx";
 import React from "react";
 import { ParamListBase} from "@react-navigation/native";
 import {NativeStackScreenProps} from "@react-navigation/native-stack";
-import CellarFill from "../components/CellarFill.tsx";
+import ProgressCircle from "../components/ProgressCircle.tsx";
+import {Canvas, Circle, Group} from "@shopify/react-native-skia";
 
 const Home = ({navigation}: NativeStackScreenProps<ParamListBase>) => {
-    return <SafeAreaView>
+    {/*return <SafeAreaView>
         <StatusBar/>
-        <ScrollView
+        {/*<ScrollView
             style={styles.container}
             contentInsetAdjustmentBehavior="automatic">
             <CellarFill />
             <WineRowSummary/>
         </ScrollView>
-    </SafeAreaView>
+        <ProgressCircle />
+    </SafeAreaView>*/}
+
+    return <ProgressCircle />
 }
 
 const styles = StyleSheet.create({
