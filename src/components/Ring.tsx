@@ -12,10 +12,11 @@ interface Ring {
 interface RingProps {
     center: Vector,
     strokeWidth: number,
-    ring: Ring
+    ring: Ring,
+    duration: number
 }
 
-export const Ring = ({center, strokeWidth, ring: {size, totalProgress, background, colors}}: RingProps) => {
+export const Ring = ({center, strokeWidth, duration, ring: {size, totalProgress, background, colors}}: RingProps) => {
     const radius = size / 2 - strokeWidth / 2;
     const animValue = useSharedValue(0);
 
@@ -49,7 +50,7 @@ export const Ring = ({center, strokeWidth, ring: {size, totalProgress, backgroun
     });
 
     useEffect(() => {
-        animValue.value = withTiming(1, {duration: 1000});
+        animValue.value = withTiming(1, {duration: duration});
     }, [animValue]);
 
     return (
