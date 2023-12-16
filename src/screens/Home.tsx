@@ -1,11 +1,7 @@
-import {Button, SafeAreaView, ScrollView, StatusBar, StyleSheet} from "react-native";
 import React from "react";
-import { ParamListBase} from "@react-navigation/native";
-import {NativeStackScreenProps} from "@react-navigation/native-stack";
-import ProgressCircle from "../components/ProgressCircle.tsx";
-import {Canvas, Circle, Group} from "@shopify/react-native-skia";
+import {ProgressCircle} from "../components/ProgressCircle.tsx";
 
-const Home = ({navigation}: NativeStackScreenProps<ParamListBase>) => {
+export const Home = () => {
     {/*return <SafeAreaView>
         <StatusBar/>
         {/*<ScrollView
@@ -19,11 +15,3 @@ const Home = ({navigation}: NativeStackScreenProps<ParamListBase>) => {
 
     return <ProgressCircle />
 }
-
-const styles = StyleSheet.create({
-    container: {
-        padding: 10
-    }
-});
-
-export default Home;
