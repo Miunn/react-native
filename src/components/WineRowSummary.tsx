@@ -12,7 +12,7 @@ const WineRowSummary = () => {
 const styles = StyleSheet.create({
     container: {
         flexDirection: "row",
-        justifyContent: "space-around"
+        justifyContent: "space-between"
     }
 });
 

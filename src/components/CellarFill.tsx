@@ -1,24 +1,35 @@
 import {StyleSheet, Text, View} from "react-native";
+import {ProgressCircle} from "./ProgressCircle.tsx";
+import React from "react";
 
-const CellarFill = () => {
-    return <View>
-        {/*<ProgressCircle
-            percent={30}
-            radius={50}
-            borderWidth={8}
-            color="#3399FF"
-            shadowColor="#999"
-            bgColor="#fff"
-        >
-            <Text style={styles.progressText}>30 %</Text>
-        </ProgressCircle>*/}
+interface CellarFillProps {
+    bottles: number,
+    capacity: number
+}
+
+const CellarFill = ({bottles, capacity}: CellarFillProps) => {
+    return <View style={styles.container}>
+        <ProgressCircle
+            size={100}
+            strokeWidth={10}
+            progress={bottles/capacity}
+            duration={1000}
+        />
+
+        <Text style={styles.text}>{bottles} bouteilles</Text>
     </View>
 }
 
 const styles = StyleSheet.create({
-    progressText: {
-        fontSize: 18,
-        color: "black"
+    container: {
+        flexDirection: 'row',
+        alignItems: "center",
+        gap: 20,
+        backgroundColor: "blue"
+    },
+    text: {
+        backgroundColor: "purple",
+        fontSize: 30
     }
 });
 

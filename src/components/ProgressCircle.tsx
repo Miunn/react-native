@@ -8,11 +8,12 @@ const fontSize = 32
 
 interface ProgressCircleProps {
     size: number,
+    strokeWidth: number,
     progress: number,
     duration: number
 }
 
-export const ProgressCircle = ({size, progress, duration}: ProgressCircleProps) => {
+export const ProgressCircle = ({size, strokeWidth, progress, duration}: ProgressCircleProps) => {
 
     const font = useFont(require("./../assets/fonts/Poppins/Poppins-Regular.ttf"), fontSize);
 
@@ -32,7 +33,7 @@ export const ProgressCircle = ({size, progress, duration}: ProgressCircleProps) 
                     colors: [color(0.008, 1, 0.659), color(0, 0.847, 1)]
                 }}
                 center={center}
-                strokeWidth={20}
+                strokeWidth={strokeWidth}
                 duration={duration}
             />
             <ProgressText
