@@ -1,4 +1,6 @@
 import {StyleSheet, Text, View} from "react-native";
+import {useContext} from "react";
+import {ThemeContext} from "../../App.tsx";
 
 interface BottleSummaryProps {
     name: string,
@@ -7,12 +9,27 @@ interface BottleSummaryProps {
 }
 
 export const BottleSummary = ({name, vintageYear, color}: BottleSummaryProps) => {
+
+    const theme = useContext(ThemeContext);
+
     return (
         <View style={styles.container}>
-            <Text>Bottle {color}</Text>
+            <Text
+                style={{
+                    color: theme.colors.foreground
+                }}
+            >Bottle {color}</Text>
             <View>
-                <Text style={styles.title}>{name}</Text>
-                <Text style={styles.year}>{vintageYear}</Text>
+                <Text
+                    style={{
+                        color: theme.colors.foreground
+                    }}
+                >{name}</Text>
+                <Text
+                    style={{
+                        color: theme.colors.foreground
+                    }}
+                >{vintageYear}</Text>
             </View>
         </View>
     )
