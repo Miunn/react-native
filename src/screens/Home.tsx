@@ -7,10 +7,11 @@ import {BottleSummary} from "../components/BottleSummary.tsx";
 import {FAB} from "@rneui/themed";
 import {NativeStackScreenProps} from "react-native-screens/native-stack";
 import {ThemeContext} from "../../App.tsx";
+import {useTheme} from "@react-navigation/native";
 
 export const Home = ({navigation}: NativeStackScreenProps<any>) => {
 
-    const theme = useContext(ThemeContext);
+    const { colors } = useTheme();
 
     return <SafeAreaView>
         <StatusBar/>
@@ -18,22 +19,15 @@ export const Home = ({navigation}: NativeStackScreenProps<any>) => {
             contentInsetAdjustmentBehavior="automatic"
         style={styles.container}>
 
-            <Text
-                style={{
-                    color: theme.colors.foreground
-                }}
-            >Ma cave</Text>
             <CellarFill
                 bottles={30}
                 capacity={50}
             />
             <WineRowSummary/>
 
-            <Text
-                style={{
-                    color: theme.colors.foreground
-                }}
-            >Dernières bouteilles rentrées</Text>
+            <Text style={{
+                color: colors.text
+            }}>Dernières bouteilles rentrées</Text>
             <BottleSummary
                 name={"Grand cru bourgogne"}
                 vintageYear={2018}

@@ -1,4 +1,5 @@
 import {Image, ImageSourcePropType, StyleSheet, Text, View} from "react-native";
+import {useTheme} from "@react-navigation/native";
 
 type IconRoundedRectangleProps = {
     iconSource: ImageSourcePropType,
@@ -6,12 +7,17 @@ type IconRoundedRectangleProps = {
 }
 
 const IconRoundedRectangle = (props: IconRoundedRectangleProps) => {
+
+    const { colors } = useTheme();
+
     return <View style={styles.container}>
         <Image
             style={styles.icon}
             source={props.iconSource}
         />
-        <Text style={styles.text}>{props.text}</Text>
+        <Text style={{
+            color: colors.text
+        }}>{props.text}</Text>
     </View>
 }
 

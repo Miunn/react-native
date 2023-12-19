@@ -1,6 +1,7 @@
 import {StyleSheet, Text, View} from "react-native";
 import {useContext} from "react";
 import {ThemeContext} from "../../App.tsx";
+import {useTheme} from "@react-navigation/native";
 
 interface BottleSummaryProps {
     name: string,
@@ -10,44 +11,23 @@ interface BottleSummaryProps {
 
 export const BottleSummary = ({name, vintageYear, color}: BottleSummaryProps) => {
 
-    const theme = useContext(ThemeContext);
+    const { colors } = useTheme();
 
     return (
-        <View style={styles.container}>
-            <Text
-                style={{
-                    color: theme.colors.foreground
-                }}
-            >Bottle {color}</Text>
+        <View style={{
+            backgroundColor: colors.card
+        }}>
+            <Text style={{
+                color: colors.text
+            }}>Bottle {color}</Text>
             <View>
-                <Text
-                    style={{
-                        color: theme.colors.foreground
-                    }}
-                >{name}</Text>
-                <Text
-                    style={{
-                        color: theme.colors.foreground
-                    }}
-                >{vintageYear}</Text>
+                <Text style={{
+                    color: colors.text
+                }}>{name}</Text>
+                <Text style={{
+                    color: colors.text
+                }}>{vintageYear}</Text>
             </View>
         </View>
     )
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flexDirection: "row",
-        gap: 20,
-        borderStyle: "solid",
-        borderWidth: 1,
-        borderRadius: 10,
-        padding: 10
-    },
-    title: {
-        fontSize: 18
-    },
-    year: {
-        fontSize: 14
-    }
-});
