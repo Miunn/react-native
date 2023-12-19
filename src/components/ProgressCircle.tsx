@@ -24,7 +24,7 @@ export const ProgressCircle = ({size, strokeWidth, progress, duration}: Progress
     }
 
     return (
-        <Canvas style={{width: size, height: size, backgroundColor: "red"}}>
+        <Canvas style={{width: size, height: size}}>
             <Ring
                 ring={{
                     size: size,

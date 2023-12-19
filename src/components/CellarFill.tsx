@@ -1,6 +1,7 @@
 import {StyleSheet, Text, View} from "react-native";
 import {ProgressCircle} from "./ProgressCircle.tsx";
 import React from "react";
+import {useTheme} from "@react-navigation/native";
 
 interface CellarFillProps {
     bottles: number,
@@ -8,6 +9,9 @@ interface CellarFillProps {
 }
 
 const CellarFill = ({bottles, capacity}: CellarFillProps) => {
+
+    const { colors } = useTheme();
+
     return <View style={styles.container}>
         <ProgressCircle
             size={100}
@@ -16,7 +20,10 @@ const CellarFill = ({bottles, capacity}: CellarFillProps) => {
             duration={1000}
         />
 
-        <Text style={styles.text}>{bottles} bouteilles</Text>
+        <Text style={{
+            color: colors.text,
+            fontSize: 30
+        }}>{bottles} bouteilles</Text>
     </View>
 }
 
@@ -25,12 +32,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: "center",
         gap: 20,
-        backgroundColor: "blue"
     },
-    text: {
-        backgroundColor: "purple",
-        fontSize: 30
-    }
 });
 
 export default CellarFill;
