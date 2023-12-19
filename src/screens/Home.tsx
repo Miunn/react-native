@@ -15,19 +15,18 @@ export const Home = ({navigation}: NativeStackScreenProps<any>) => {
 
     return <SafeAreaView>
         <StatusBar/>
-        <ScrollView
-            contentInsetAdjustmentBehavior="automatic"
-        style={styles.container}>
+        <ScrollView style={styles.container} contentContainerStyle={{rowGap: 10}}>
 
             <CellarFill
                 bottles={30}
                 capacity={50}
             />
+
             <WineRowSummary/>
 
             <Text style={{
                 color: colors.text
-            }}>Dernières bouteilles rentrées</Text>
+            }}>Dernières bouteilles enregistrées</Text>
             <BottleSummary
                 name={"Grand cru bourgogne"}
                 vintageYear={2018}
@@ -44,7 +43,6 @@ export const Home = ({navigation}: NativeStackScreenProps<any>) => {
 
 const styles = StyleSheet.create({
     container: {
-        flexDirection: "column",
         padding: 10,
     },
     title: {
