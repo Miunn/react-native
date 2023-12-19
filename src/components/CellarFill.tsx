@@ -5,14 +5,15 @@ import {useTheme} from "@react-navigation/native";
 
 interface CellarFillProps {
     bottles: number,
-    capacity: number
+    capacity: number,
+    style: object
 }
 
-const CellarFill = ({bottles, capacity}: CellarFillProps) => {
+const CellarFill = ({bottles, capacity, style}: CellarFillProps) => {
 
     const { colors } = useTheme();
 
-    return <View style={styles.container}>
+    return <View style={{...styles.container, ...style}}>
         <ProgressCircle
             size={100}
             strokeWidth={10}

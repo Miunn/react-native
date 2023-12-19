@@ -15,17 +15,27 @@ export const BottleSummary = ({name, vintageYear, color}: BottleSummaryProps) =>
 
     return (
         <View style={{
-            backgroundColor: colors.card
+            flexDirection: "row",
+            alignItems: "center",
+            columnGap: 10,
+            backgroundColor: colors.card,
+            borderStyle: "solid",
+            borderColor: "black",
+            borderWidth: 1,
+            borderRadius: 5,
+            padding: 10
         }}>
             <Text style={{
-                color: colors.text
+                color: colors.text,
             }}>Bottle {color}</Text>
             <View>
                 <Text style={{
-                    color: colors.text
+                    color: colors.text,
+                    fontSize: 18
                 }}>{name}</Text>
                 <Text style={{
-                    color: colors.text
+                    color: colors.text,
+                    fontSize: 12,
                 }}>{vintageYear}</Text>
             </View>
         </View>
