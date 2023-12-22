@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import {Home} from "./src/screens/Home.tsx";
-import {useColorScheme} from "react-native";
 import {DefaultTheme, NavigationContainer} from "@react-navigation/native";
 import {createStackNavigator} from '@react-navigation/stack';
 import AddBottle from "./src/screens/AddBottle.tsx";
