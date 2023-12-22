@@ -42,6 +42,7 @@ export const Home = ({navigation}: NativeStackScreenProps<any>) => {
                 title="Ajouter une bouteille"
                 icon={{name: "add", color: "white"}}
                 color="blue"
+                onPress={() => navigation.navigate("AddBottle")}
             />
         </ScrollView>
     </SafeAreaView>

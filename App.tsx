@@ -29,8 +29,8 @@ function App(): React.JSX.Element {
     return (
         <NavigationContainer theme={Theme}>
             <Stack.Navigator>
-                <Stack.Screen name={"Ma cave"} component={Home} />
-                <Stack.Screen name={"Ajouter une bouteille"} component={AddBottle} />
+                <Stack.Screen name={"Cave"} component={Home}  />
+                <Stack.Screen name={"AddBottle"} component={AddBottle} />
             </Stack.Navigator>
         </NavigationContainer>
     );
