@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import React, {useContext} from "react";
+import React from "react";
 import {SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, View} from "react-native";
 import CellarFill from "../components/CellarFill.tsx";
 import WineRowSummary from "../components/WineRowSummary.tsx";

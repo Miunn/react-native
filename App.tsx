@@ -3,6 +3,7 @@ import {Home} from "./src/screens/Home.tsx";
 import {useColorScheme} from "react-native";
 import {DefaultTheme, NavigationContainer} from "@react-navigation/native";
 import {createStackNavigator} from '@react-navigation/stack';
+import AddBottle from "./src/screens/AddBottle.tsx";
 
 const Theme = {
     ...DefaultTheme,
@@ -28,7 +29,8 @@ function App(): React.JSX.Element {
     return (
         <NavigationContainer theme={Theme}>
             <Stack.Navigator>
-                <Stack.Screen name={"Ma cave"} component={Home}/>
+                <Stack.Screen name={"Ma cave"} component={Home} />
+                <Stack.Screen name={"Ajouter une bouteille"} component={AddBottle} />
             </Stack.Navigator>
         </NavigationContainer>
     );
