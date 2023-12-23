@@ -22,7 +22,7 @@ export const getBottles = async (db:SQLiteDatabase): Promise<any[]> => {
     const query = "SELECT * FROM Bottles";
 
     try {
-        const bottles: Bottle[] = [];
+        const bottles: BottleType[] = [];
         const lines = await db.executeSql(query);
         lines.forEach(l => {
             for (let index = 0; index < l.rows.length; index++) {
@@ -37,7 +37,7 @@ export const getBottles = async (db:SQLiteDatabase): Promise<any[]> => {
     }
 };
 
-export const insertBottles = async (db: SQLiteDatabase, bottles: Bottle[]): Promise<[ResultSet]> => {
+export const insertBottles = async (db: SQLiteDatabase, bottles: BottleType[]): Promise<[ResultSet]> => {
     const query = `INSERT OR REPLACE INTO Bottles(rowid, name, vintageYear, color) VALUES` +
         bottles.map(b => `(${b.id}, '${b.name}', '${b.vintageYear}', '${b.color}')`).join(',');
 
