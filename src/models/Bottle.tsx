@@ -1,4 +1,4 @@
-export type Bottle = {
+export type BottleType = {
     id: number,
     name: string,
     vintageYear: number,
