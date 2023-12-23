@@ -1,5 +1,5 @@
 import {enablePromise, openDatabase, ResultSet, SQLiteDatabase} from "react-native-sqlite-storage";
-import {Bottle} from "../models/Bottle.tsx";
+import {BottleType} from "../models/Bottle.tsx";
 
 enablePromise(true);
 
