@@ -18,7 +18,7 @@ export const initTable = async (db: SQLiteDatabase, tableName: string, schema: s
     await db.executeSql(query);
 };
 
-export const getBottles = async (db:SQLiteDatabase): Promise<any[]> => {
+export const getBottles = async (db:SQLiteDatabase): Promise<BottleType[]> => {
     const query = "SELECT * FROM Bottles";
 
     try {

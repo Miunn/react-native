@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import React from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import {SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, View} from "react-native";
 import CellarFill from "../components/CellarFill.tsx";
 import WineRowSummary from "../components/WineRowSummary.tsx";
@@ -7,10 +7,41 @@ import {BottleSummary} from "../components/BottleSummary.tsx";
 import {FAB} from "@rneui/themed";
 import {NativeStackScreenProps} from "react-native-screens/native-stack";
 import {useTheme} from "@react-navigation/native";
+import {getBottles, getDBConnection, initDB, insertBottles} from "../services/db-interface.ts";
+import {BottleType} from "../models/Bottle.tsx";
 
 export const Home = ({navigation}: NativeStackScreenProps<any>) => {
 
     const {colors} = useTheme();
+
+    const [bottles, setBottles] = useState<BottleType[]>([]);
+    const loadBottlesCallback = useCallback(async () => {
+        try {
+            const initBottles: BottleType[] = [
+                {
+                    id: 0,
+                    name: 'Grand cru',
+                    vintageYear: 2020,
+                    color: 'red',
+                }
+            ];
+            const db = await getDBConnection();
+            await initDB(db);
+            const storedBottles = await getBottles(db);
+            if (storedBottles.length == 0) {
+                setBottles(storedBottles);
+            } else {
+                await insertBottles(db, initBottles);
+                setBottles(initBottles);
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    }, []);
+
+    useEffect(() => {
+        loadBottlesCallback();
+    }, [loadBottlesCallback]);
 
     return <SafeAreaView>
         <StatusBar/>
@@ -32,10 +63,15 @@ export const Home = ({navigation}: NativeStackScreenProps<any>) => {
                     fontSize: 20,
                     marginBottom: 10
                 }}>Dernières bouteilles enregistrées</Text>
-                <BottleSummary
-                    name={"Grand cru bourgogne"}
-                    vintageYear={2018}
-                    color={"red"}/>
+
+                {bottles.map((bottle) => (
+                    <BottleSummary
+                        key={bottle.id}
+                        name={bottle.name}
+                        vintageYear={bottle.vintageYear}
+                        color={bottle.color} />
+                ))}
+
             </View>
 
             <FAB
