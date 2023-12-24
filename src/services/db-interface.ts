@@ -53,6 +53,6 @@ export const insertBottles = async (db: SQLiteDatabase, bottles: BottleType[]): 
 }
 
 export const deleteBottle = async (db: SQLiteDatabase, id: number) => {
-    const deleteQuery = `DELETE from Bottles where id = ${id}`;
-    await db.executeSql(deleteQuery);
+    const deleteQuery = `DELETE from Bottles where rowid = ${id}`;
+    return db.executeSql(deleteQuery);
 };

@@ -1,17 +1,22 @@
 import {Text, View} from "react-native";
 import {useTheme} from "@react-navigation/native";
 import {Button, Card, Icon} from "react-native-paper";
+import {deleteBottle, getDBConnection} from "../services/db-interface.ts";
+import {BottleType} from "../models/Bottle.tsx";
 
 interface BottleSummaryProps {
-    name: string,
-    vintageYear: number,
-    color: string
+    bottle: BottleType,
 }
 
-export const BottleSummary = ({name, vintageYear, color}: BottleSummaryProps) => {
+export const BottleSummary = ({bottle: {id, name, vintageYear, color}}: BottleSummaryProps) => {
 
     const { colors } = useTheme();
     const icon = (props: {size: number}) => <Icon source={"bottle-wine"} size={20} />
+
+    const deleteBottleFromDB = async () => {
+        const db = await getDBConnection();
+        await deleteBottle(db, id!);
+    };
 
     return (
         <Card style={{
@@ -24,7 +29,7 @@ export const BottleSummary = ({name, vintageYear, color}: BottleSummaryProps) =>
                 }}>Content</Text>
             </Card.Content>
             <Card.Actions>
-                <Button mode={"text"}>Sortir la bouteille</Button>
+                <Button mode={"text"} onPress={deleteBottleFromDB}>Sortir la bouteille</Button>
             </Card.Actions>
         </Card>
     )

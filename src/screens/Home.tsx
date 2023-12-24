@@ -29,7 +29,7 @@ export const Home = ({navigation}: NativeStackScreenProps<any>) => {
 
     useEffect(() => {
         loadBottlesCallback();
-    }, [loadBottlesCallback, isFocused]);
+    }, [loadBottlesCallback, isFocused, bottles]);
 
     return <SafeAreaView>
         <StatusBar/>
@@ -57,9 +57,7 @@ export const Home = ({navigation}: NativeStackScreenProps<any>) => {
                 {bottles.map((bottle) => (
                     <BottleSummary
                         key={bottle.id}
-                        name={bottle.name}
-                        vintageYear={bottle.vintageYear}
-                        color={bottle.color} />
+                        bottle={bottle} />
                 ))}
 
             </View>
