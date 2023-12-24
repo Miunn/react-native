@@ -1,11 +1,18 @@
 import {StyleSheet, View} from "react-native";
 import IconRoundedRectangle from "./IconRoundedRectangle.tsx";
+import {Chip} from "react-native-paper";
 
-const WineRowSummary = () => {
+interface WineRowSummaryProps {
+    redAmount: number,
+    whiteAmount: number,
+    pinkAmount: number
+}
+
+const WineRowSummary = ({redAmount, whiteAmount, pinkAmount}: WineRowSummaryProps) => {
     return <View style={styles.container}>
-        <IconRoundedRectangle iconSource={require('./../assets/wine_bar.png')} text={'Vin rouge'} />
-        <IconRoundedRectangle iconSource={require('./../assets/wine_bar.png')} text={'Vin rosé'} />
-        <IconRoundedRectangle iconSource={require('./../assets/wine_bar.png')} text={'Vin blanc'} />
+        <Chip icon={"glass-wine"}>{redAmount} Rouge</Chip>
+        <Chip icon={"glass-wine"}>{whiteAmount} Blanc</Chip>
+        <Chip icon={"glass-wine"}>{pinkAmount} Rosé</Chip>
     </View>
 }
 

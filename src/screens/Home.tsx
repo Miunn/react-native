@@ -33,7 +33,7 @@ export const Home = ({navigation}: NativeStackScreenProps<any>) => {
 
     return <SafeAreaView style={{flex: 1}}>
         <StatusBar/>
-        <ScrollView style={styles.container} contentContainerStyle={{rowGap: 40, paddingBottom: 100}}>
+        <ScrollView style={styles.container} contentContainerStyle={{rowGap: 30, paddingBottom: 100}}>
 
             <CellarFill
                 bottles={bottles.length}
@@ -45,7 +45,11 @@ export const Home = ({navigation}: NativeStackScreenProps<any>) => {
                 }}
             />
 
-            <WineRowSummary/>
+            <WineRowSummary
+                redAmount={2}
+                whiteAmount={0}
+                pinkAmount={0}
+            />
 
             <View>
                 <Text style={{
