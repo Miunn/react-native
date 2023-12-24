@@ -1,5 +1,6 @@
 import {Text, View} from "react-native";
 import {useTheme} from "@react-navigation/native";
+import {Button, Card, Icon} from "react-native-paper";
 
 interface BottleSummaryProps {
     name: string,
@@ -10,9 +11,23 @@ interface BottleSummaryProps {
 export const BottleSummary = ({name, vintageYear, color}: BottleSummaryProps) => {
 
     const { colors } = useTheme();
+    const icon = (props: {size: number}) => <Icon source={"bottle-wine"} size={20} />
 
     return (
-        <View style={{
+        <Card>
+            <Card.Title title={name} subtitle={vintageYear} left={icon} />
+            <Card.Content>
+                <Text style={{
+                    color: colors.text
+                }}>Content</Text>
+            </Card.Content>
+            <Card.Actions>
+                <Button mode={"text"}>Sortir la bouteille</Button>
+            </Card.Actions>
+        </Card>
+    )
+
+    {/*<View style={{
             flexDirection: "row",
             alignItems: "center",
             columnGap: 10,
@@ -36,6 +51,5 @@ export const BottleSummary = ({name, vintageYear, color}: BottleSummaryProps) =>
                     fontSize: 12,
                 }}>{vintageYear}</Text>
             </View>
-        </View>
-    )
+        </View> */}
 }
