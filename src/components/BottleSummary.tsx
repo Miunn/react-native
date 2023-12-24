@@ -2,7 +2,7 @@ import {Text, View} from "react-native";
 import {useTheme} from "@react-navigation/native";
 import {Button, Card, Icon, TouchableRipple} from "react-native-paper";
 import {deleteBottle, getDBConnection} from "../services/db-interface.ts";
-import {BottleType} from "../models/Bottle.tsx";
+import {BottleType} from "../models/BottleType.tsx";
 
 interface BottleSummaryProps {
     bottle: BottleType,

@@ -8,7 +8,7 @@ import {FAB} from "react-native-paper";
 import {NativeStackScreenProps} from "react-native-screens/native-stack";
 import {useIsFocused, useTheme} from "@react-navigation/native";
 import {getBottles, getDBConnection, initDB} from "../services/db-interface.ts";
-import {BottleType} from "../models/Bottle.tsx";
+import {BottleType} from "../models/BottleType.tsx";
 
 export const Home = ({navigation}: NativeStackScreenProps<any>) => {
 
