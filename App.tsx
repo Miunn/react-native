@@ -45,8 +45,6 @@ function BottlesStackScreen() {
 
 function App(): React.JSX.Element {
 
-    const [darkMode, setDarkMode] = useState(false);
-
     const Tab = createMaterialBottomTabNavigator();
 
     return (
