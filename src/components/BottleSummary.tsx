@@ -18,11 +18,26 @@ export const BottleSummary = ({bottle: {id, name, vintageYear, color}}: BottleSu
         await deleteBottle(db, id!);
     };
 
+    let colorString;
+    switch (color) {
+        case 'red':
+            colorString = "Vin Rouge";
+            break;
+        case 'white':
+            colorString = "Vin Rouge";
+            break;
+        case 'pink':
+            colorString = "Vin Rouge";
+            break;
+        default:
+            colorString = `Vin ${color}`;
+    }
+
     return (
         <Card style={{
             margin: 10
         }}>
-            <Card.Title title={name} subtitle={vintageYear} left={icon} />
+            <Card.Title title={name} subtitle={`${vintageYear} - ${colorString}`} left={icon} />
             <Card.Content>
                 <Text style={{
                     color: colors.text
@@ -33,30 +48,4 @@ export const BottleSummary = ({bottle: {id, name, vintageYear, color}}: BottleSu
             </Card.Actions>
         </Card>
     )
-
-    {/*<View style={{
-            flexDirection: "row",
-            alignItems: "center",
-            columnGap: 10,
-            backgroundColor: colors.card,
-            borderStyle: "solid",
-            borderColor: "black",
-            borderWidth: 1,
-            borderRadius: 5,
-            padding: 10
-        }}>
-            <Text style={{
-                color: colors.text,
-            }}>Bottle {color}</Text>
-            <View>
-                <Text style={{
-                    color: colors.text,
-                    fontSize: 18
-                }}>{name}</Text>
-                <Text style={{
-                    color: colors.text,
-                    fontSize: 12,
-                }}>{vintageYear}</Text>
-            </View>
-        </View> */}
 }
