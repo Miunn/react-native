@@ -1,5 +1,6 @@
 import {enablePromise, openDatabase, ResultSet, SQLiteDatabase} from "react-native-sqlite-storage";
 import {BottleType} from "../models/Bottle.tsx";
+import {it} from "@jest/globals";
 
 enablePromise(true);
 
@@ -19,14 +20,21 @@ export const initTable = async (db: SQLiteDatabase, tableName: string, schema: s
 };
 
 export const getBottles = async (db:SQLiteDatabase): Promise<BottleType[]> => {
-    const query = "SELECT * FROM Bottles";
+    const query = "SELECT rowid, * FROM Bottles";
 
     try {
         const bottles: BottleType[] = [];
         const lines = await db.executeSql(query);
         lines.forEach(l => {
             for (let index = 0; index < l.rows.length; index++) {
-                bottles.push(l.rows.item(index));
+                const item = l.rows.item(index);
+
+                bottles.push({
+                    id: item.rowid,
+                    name: item.name,
+                    vintageYear: item.vintageYear,
+                    color: item.color
+                });
             }
         });
 

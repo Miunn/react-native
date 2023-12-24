@@ -20,7 +20,7 @@ export const ProgressText = ({progress, centerX, y, font, duration}: ProgressTex
         if (animValue.value < 1) {
             return Math.floor(progress*animValue.value * 100) + "%";
         }
-        return progress * 100 + "%";
+        return Math.floor(progress * 100) + "%";
     });
 
     useEffect(() => {

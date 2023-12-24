@@ -6,34 +6,22 @@ import WineRowSummary from "../components/WineRowSummary.tsx";
 import {BottleSummary} from "../components/BottleSummary.tsx";
 import {FAB} from "react-native-paper";
 import {NativeStackScreenProps} from "react-native-screens/native-stack";
-import {useTheme} from "@react-navigation/native";
+import {useIsFocused, useTheme} from "@react-navigation/native";
 import {getBottles, getDBConnection, initDB, insertBottles} from "../services/db-interface.ts";
 import {BottleType} from "../models/Bottle.tsx";
 
 export const Home = ({navigation}: NativeStackScreenProps<any>) => {
 
+    const isFocused = useIsFocused();
     const {colors} = useTheme();
 
     const [bottles, setBottles] = useState<BottleType[]>([]);
     const loadBottlesCallback = useCallback(async () => {
         try {
-            const initBottles: BottleType[] = [
-                {
-                    id: 0,
-                    name: 'Grand cru',
-                    vintageYear: 2020,
-                    color: 'red',
-                }
-            ];
             const db = await getDBConnection();
             await initDB(db);
             const storedBottles = await getBottles(db);
-            if (storedBottles.length) {
-                setBottles(storedBottles);
-            } else {
-                await insertBottles(db, initBottles);
-                setBottles(initBottles);
-            }
+            setBottles(storedBottles);
         } catch (err) {
             console.error(err);
         }
@@ -41,7 +29,7 @@ export const Home = ({navigation}: NativeStackScreenProps<any>) => {
 
     useEffect(() => {
         loadBottlesCallback();
-    }, [loadBottlesCallback]);
+    }, [loadBottlesCallback, isFocused]);
 
     return <SafeAreaView>
         <StatusBar/>

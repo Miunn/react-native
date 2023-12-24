@@ -21,6 +21,7 @@ const CellarFill = ({bottles, capacity, style}: CellarFillProps) => {
         label = `${bottles} bouteille`;
     }
 
+    console.log("Progress:", bottles/capacity);
     return <View style={{...styles.container, ...style}}>
         <ProgressCircle
             size={100}

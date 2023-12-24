@@ -25,8 +25,7 @@ const AddBottle = ({navigation}: NativeStackScreenProps<any>) => {
             vintageYear: parseInt(vintageYear),
             color: color
         }]);
-        console.log("Inserted");
-        navigation.navigate("Cave");
+        navigation.goBack();
     }
 
     return <SafeAreaView>
