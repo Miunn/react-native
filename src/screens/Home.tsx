@@ -1,16 +1,20 @@
 import 'react-native-gesture-handler';
 import React, {useCallback, useEffect, useState} from "react";
-import {SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, View} from "react-native";
+import {SafeAreaView, ScrollView, StyleSheet, Text, View} from "react-native";
 import CellarFill from "../components/CellarFill.tsx";
 import WineRowSummary from "../components/WineRowSummary.tsx";
 import {BottleSummary} from "../components/BottleSummary.tsx";
-import {FAB} from "react-native-paper";
-import {NativeStackScreenProps} from "react-native-screens/native-stack";
-import {useIsFocused, useTheme} from "@react-navigation/native";
+import {Appbar, FAB} from "react-native-paper";
+import {NavigationProp, useIsFocused, useTheme} from "@react-navigation/native";
 import {getBottles, getDBConnection, initDB} from "../services/db-interface.ts";
 import {BottleType} from "../models/BottleType.tsx";
 
-export const Home = ({navigation}: NativeStackScreenProps<any>) => {
+interface HomeProps {
+    navigation: NavigationProp<any>,
+    route: any
+}
+
+export const Home = ({navigation, route}: HomeProps) => {
 
     const isFocused = useIsFocused();
     const {colors} = useTheme();
@@ -32,7 +36,10 @@ export const Home = ({navigation}: NativeStackScreenProps<any>) => {
     }, [loadBottlesCallback, isFocused, bottles]);
 
     return <SafeAreaView style={{flex: 1}}>
-        <StatusBar/>
+        <Appbar.Header>
+            <Appbar.Content title={route.params.title} />
+            <Appbar.Action icon="magnify" onPress={() => {}} />
+        </Appbar.Header>
         <ScrollView style={styles.container} contentContainerStyle={{rowGap: 30, paddingBottom: 60}}>
 
             <CellarFill

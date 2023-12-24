@@ -25,9 +25,9 @@ function HomeStackScreen() {
     const Stack = createStackNavigator();
 
     return (
-        <Stack.Navigator>
-            <Stack.Screen name={"cave"} component={Home} options={{title: "Ma cave"}}/>
-            <Stack.Screen name={"addBottle"} component={AddBottle} options={{title: "Ajouter une bouteille"}}/>
+        <Stack.Navigator screenOptions={{headerShown: false}}>
+            <Stack.Screen name={"cave"} component={Home} options={{title: "Ma cave"}} initialParams={{title: "Ma cave"}}/>
+            <Stack.Screen name={"addBottle"} component={AddBottle} options={{title: "Ajouter une bouteille"}} initialParams={{title: "Ajouter une bouteille"}}/>
         </Stack.Navigator>
     )
 }
@@ -36,9 +36,9 @@ function BottlesStackScreen() {
     const Stack = createStackNavigator();
 
     return (
-        <Stack.Navigator>
-            <Stack.Screen name={"bottles"} component={Bottles} options={{title: "Mes bouteilles"}}/>
-            <Stack.Screen name={"addBottle"} component={AddBottle} options={{title: "Ajouter une bouteille"}}/>
+        <Stack.Navigator screenOptions={{headerShown: false}}>
+            <Stack.Screen name={"bottles"} component={Bottles} options={{title: "Mes bouteilles"}} initialParams={{title: "Mes bouteilles"}}/>
+            <Stack.Screen name={"addBottle"} component={AddBottle} options={{title: "Ajouter une bouteille"}} initialParams={{title: "Ajouter une bouteille"}}/>
         </Stack.Navigator>
     )
 }
@@ -51,6 +51,7 @@ function App(): React.JSX.Element {
         <SafeAreaProvider>
             <NavigationContainer theme={Theme}>
                 <Tab.Navigator screenOptions={({route}) => ({
+                    headerShown: false,
                     tabBarIcon: ({focused, color}) => {
                         let iconName = "";
 

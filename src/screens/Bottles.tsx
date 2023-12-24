@@ -1,21 +1,24 @@
 import BottlesList from "../components/BottlesList.tsx";
 import React, {useState} from "react";
-import {Searchbar} from "react-native-paper";
+import {Appbar, Searchbar} from "react-native-paper";
 import {SafeAreaView, ScrollView, StatusBar, StyleSheet} from "react-native";
+import {NavigationProp} from "@react-navigation/native";
 
-const Bottles = () => {
+interface BottlesProps {
+    navigation: NavigationProp<any>
+    route: any
+}
+
+const Bottles = ({navigation, route}: BottlesProps) => {
 
     const [searchQuery, setSearchQuery] = useState("");
 
     return (
         <SafeAreaView style={{flex: 1}}>
-            <StatusBar/>
-            <Searchbar
-                placeholder={"Rechercher"}
-                value={searchQuery}
-                onChangeText={setSearchQuery}
-                style={styles.searchBar}
-            />
+            <Appbar.Header>
+                <Appbar.Content title={route.params.title} />
+                <Appbar.Action icon="magnify" onPress={() => {}} />
+            </Appbar.Header>
             <BottlesList/>
         </SafeAreaView>
     )
