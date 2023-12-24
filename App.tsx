@@ -6,6 +6,7 @@ import AddBottle from "./src/screens/AddBottle.tsx";
 import {createMaterialBottomTabNavigator} from "react-native-paper/react-navigation";
 import {SafeAreaProvider} from "react-native-safe-area-context";
 import {Icon} from "react-native-paper";
+import Bottles from "./src/screens/Bottles.tsx";
 
 const Theme = {
     ...DefaultTheme,
@@ -36,7 +37,7 @@ function BottlesStackScreen() {
 
     return (
         <Stack.Navigator>
-            <Stack.Screen name={"cave"} component={Home} options={{title: "Ma cave"}}/>
+            <Stack.Screen name={"cave"} component={Bottles} options={{title: "Ma cave"}}/>
             <Stack.Screen name={"addBottle"} component={AddBottle} options={{title: "Ajouter une bouteille"}}/>
         </Stack.Navigator>
     )
