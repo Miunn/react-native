@@ -4,7 +4,7 @@ import {SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, View} from "react
 import CellarFill from "../components/CellarFill.tsx";
 import WineRowSummary from "../components/WineRowSummary.tsx";
 import {BottleSummary} from "../components/BottleSummary.tsx";
-import {FAB} from "@rneui/themed";
+import {FAB} from "react-native-paper";
 import {NativeStackScreenProps} from "react-native-screens/native-stack";
 import {useTheme} from "@react-navigation/native";
 import {getBottles, getDBConnection, initDB, insertBottles} from "../services/db-interface.ts";
@@ -75,9 +75,8 @@ export const Home = ({navigation}: NativeStackScreenProps<any>) => {
             </View>
 
             <FAB
-                title="Ajouter une bouteille"
-                icon={{name: "add", color: "white"}}
-                color="blue"
+                label="Ajouter une bouteille"
+                icon={"plus"}
                 onPress={() => navigation.navigate("AddBottle")}
             />
         </ScrollView>
