@@ -33,7 +33,7 @@ export const Home = ({navigation}: NativeStackScreenProps<any>) => {
 
     return <SafeAreaView style={{flex: 1}}>
         <StatusBar/>
-        <ScrollView style={styles.container} contentContainerStyle={{rowGap: 30, paddingBottom: 100}}>
+        <ScrollView style={styles.container} contentContainerStyle={{rowGap: 30, paddingBottom: 60}}>
 
             <CellarFill
                 bottles={bottles.length}
@@ -67,7 +67,6 @@ export const Home = ({navigation}: NativeStackScreenProps<any>) => {
             </View>
         </ScrollView>
         <FAB
-            label="Ajouter une bouteille"
             icon={"plus"}
             onPress={() => navigation.navigate("addBottle")}
             style={styles.addFab}
@@ -85,7 +84,6 @@ const styles = StyleSheet.create({
     addFab: {
         position: "absolute",
         bottom: 10,
-        left: 10,
         right: 10,
     }
 });
