@@ -13,6 +13,14 @@ const CellarFill = ({bottles, capacity, style}: CellarFillProps) => {
 
     const { colors } = useTheme();
 
+    let label = `${bottles} bouteilles`;
+
+    if (bottles == 0) {
+        label = "Aucune bouteille";
+    } else if (bottles == 1) {
+        label = `${bottles} bouteille`;
+    }
+
     return <View style={{...styles.container, ...style}}>
         <ProgressCircle
             size={100}
@@ -24,7 +32,7 @@ const CellarFill = ({bottles, capacity, style}: CellarFillProps) => {
         <Text style={{
             color: colors.text,
             fontSize: 30
-        }}>{bottles} bouteilles</Text>
+        }}>{label}</Text>
     </View>
 }
 

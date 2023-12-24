@@ -48,7 +48,7 @@ export const Home = ({navigation}: NativeStackScreenProps<any>) => {
         <ScrollView style={styles.container} contentContainerStyle={{rowGap: 40}}>
 
             <CellarFill
-                bottles={30}
+                bottles={bottles.length}
                 capacity={50}
                 style={{
                     marginTop: 30
