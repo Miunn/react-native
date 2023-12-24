@@ -28,7 +28,7 @@ export const Home = ({navigation}: NativeStackScreenProps<any>) => {
             const db = await getDBConnection();
             await initDB(db);
             const storedBottles = await getBottles(db);
-            if (storedBottles.length == 0) {
+            if (storedBottles.length) {
                 setBottles(storedBottles);
             } else {
                 await insertBottles(db, initBottles);
