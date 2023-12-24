@@ -7,7 +7,7 @@ import {BottleSummary} from "../components/BottleSummary.tsx";
 import {FAB} from "react-native-paper";
 import {NativeStackScreenProps} from "react-native-screens/native-stack";
 import {useIsFocused, useTheme} from "@react-navigation/native";
-import {getBottles, getDBConnection, initDB, insertBottles} from "../services/db-interface.ts";
+import {getBottles, getDBConnection, initDB} from "../services/db-interface.ts";
 import {BottleType} from "../models/Bottle.tsx";
 
 export const Home = ({navigation}: NativeStackScreenProps<any>) => {
@@ -69,7 +69,7 @@ export const Home = ({navigation}: NativeStackScreenProps<any>) => {
         <FAB
             label="Ajouter une bouteille"
             icon={"plus"}
-            onPress={() => navigation.navigate("AddBottle")}
+            onPress={() => navigation.navigate("addBottle")}
             style={styles.addFab}
         />
     </SafeAreaView>

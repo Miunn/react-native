@@ -1,7 +1,7 @@
 import {SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, View} from "react-native";
 import {NativeStackScreenProps} from "react-native-screens/native-stack";
 import {useTheme} from "@react-navigation/native";
-import {useState} from "react";
+import React, {useState} from "react";
 import {TextInput, RadioButton, FAB, Snackbar} from "react-native-paper";
 import {getDBConnection, initDB, insertBottles} from "../services/db-interface.ts";
 
