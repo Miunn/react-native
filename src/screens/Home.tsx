@@ -39,7 +39,9 @@ export const Home = ({navigation}: NativeStackScreenProps<any>) => {
                 bottles={bottles.length}
                 capacity={50}
                 style={{
-                    marginTop: 30
+                    marginTop: 30,
+                    marginLeft: 10,
+                    marginRight: 10,
                 }}
             />
 
@@ -49,7 +51,7 @@ export const Home = ({navigation}: NativeStackScreenProps<any>) => {
                 <Text style={{
                     color: colors.text,
                     fontSize: 20,
-                    marginBottom: 10
+                    margin: 10
                 }}>Dernières bouteilles enregistrées</Text>
 
                 {bottles.map((bottle) => (
@@ -73,7 +75,7 @@ export const Home = ({navigation}: NativeStackScreenProps<any>) => {
 
 const styles = StyleSheet.create({
     container: {
-        padding: 10,
+
     },
     title: {
         fontSize: 40,

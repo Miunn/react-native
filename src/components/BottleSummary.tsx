@@ -14,7 +14,9 @@ export const BottleSummary = ({name, vintageYear, color}: BottleSummaryProps) =>
     const icon = (props: {size: number}) => <Icon source={"bottle-wine"} size={20} />
 
     return (
-        <Card>
+        <Card style={{
+            margin: 10
+        }}>
             <Card.Title title={name} subtitle={vintageYear} left={icon} />
             <Card.Content>
                 <Text style={{
