@@ -20,7 +20,18 @@ const Theme = {
     }
 }
 
-function StackNavigator() {
+function HomeStackScreen() {
+    const Stack = createStackNavigator();
+
+    return (
+        <Stack.Navigator>
+            <Stack.Screen name={"cave"} component={Home} options={{title: "Ma cave"}}/>
+            <Stack.Screen name={"addBottle"} component={AddBottle} options={{title: "Ajouter une bouteille"}}/>
+        </Stack.Navigator>
+    )
+}
+
+function BottlesStackScreen() {
     const Stack = createStackNavigator();
 
     return (
@@ -57,8 +68,8 @@ function App(): React.JSX.Element {
                         return <Icon source={iconName} size={20} color={color} />
                     }
                 })}>
-                    <Tab.Screen name={"caveTab"} component={StackNavigator} options={{title: "Ma cave"}}/>
-                    <Tab.Screen name={"bottlesTab"} component={StackNavigator} options={{title: "Mes bouteilles"}}/>
+                    <Tab.Screen name={"caveTab"} component={HomeStackScreen} options={{title: "Ma cave"}}/>
+                    <Tab.Screen name={"bottlesTab"} component={BottlesStackScreen} options={{title: "Mes bouteilles"}}/>
                 </Tab.Navigator>
             </NavigationContainer>
         </SafeAreaProvider>
