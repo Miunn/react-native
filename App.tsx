@@ -37,7 +37,7 @@ function BottlesStackScreen() {
 
     return (
         <Stack.Navigator>
-            <Stack.Screen name={"cave"} component={Bottles} options={{title: "Ma cave"}}/>
+            <Stack.Screen name={"bottles"} component={Bottles} options={{title: "Mes bouteilles"}}/>
             <Stack.Screen name={"addBottle"} component={AddBottle} options={{title: "Ajouter une bouteille"}}/>
         </Stack.Navigator>
     )

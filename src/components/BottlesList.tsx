@@ -27,7 +27,6 @@ const BottlesList = () => {
 
     return (
         <ScrollView>
-            <Text>Toutes les bouteilles</Text>
             {bottles.map((bottle) => {
                 let colorString;
                 switch (bottle.color) {
