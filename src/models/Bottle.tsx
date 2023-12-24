@@ -1,5 +1,5 @@
 export type BottleType = {
-    id: number,
+    id?: number,
     name: string,
     vintageYear: number,
     color: string,

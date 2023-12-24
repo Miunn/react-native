@@ -2,19 +2,32 @@ import {SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, View} from "react
 import {NativeStackScreenProps} from "react-native-screens/native-stack";
 import {useTheme} from "@react-navigation/native";
 import {useState} from "react";
-import {TextInput, RadioButton} from "react-native-paper";
+import {TextInput, RadioButton, FAB} from "react-native-paper";
+import {getDBConnection, initDB, insertBottles} from "../services/db-interface.ts";
 
 interface AddBottleProps {
     navigation: NativeStackScreenProps<any>,
     route: any,
 }
 
-const AddBottle = ({navigation, route}: AddBottleProps) => {
+const AddBottle = ({navigation}: NativeStackScreenProps<any>) => {
     const {colors} = useTheme();
 
     const [name, setName] = useState("");
     const [vintageYear, setVintageYear] = useState("2020");
     const [color, setColor] = useState('red');
+
+    const saveToDb = async () => {
+        const db = await getDBConnection();
+        await initDB(db);
+        await insertBottles(db, [{
+            name: name,
+            vintageYear: parseInt(vintageYear),
+            color: color
+        }]);
+        console.log("Inserted");
+        navigation.navigate("Cave");
+    }
 
     return <SafeAreaView>
         <StatusBar/>
@@ -67,6 +80,12 @@ const AddBottle = ({navigation, route}: AddBottleProps) => {
                     </View>
                 </View>
             </RadioButton.Group>
+
+            <FAB
+                icon={"content-save"}
+                label={"Sauvegarder"}
+                onPress={saveToDb}
+            />
         </ScrollView>
     </SafeAreaView>
 }
