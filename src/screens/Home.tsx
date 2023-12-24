@@ -31,7 +31,7 @@ export const Home = ({navigation}: NativeStackScreenProps<any>) => {
         loadBottlesCallback();
     }, [loadBottlesCallback, isFocused, bottles]);
 
-    return <SafeAreaView>
+    return <SafeAreaView style={{flex: 1}}>
         <StatusBar/>
         <ScrollView style={styles.container} contentContainerStyle={{rowGap: 40, paddingBottom: 100}}>
 

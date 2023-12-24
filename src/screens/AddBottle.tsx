@@ -2,7 +2,7 @@ import {SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, View} from "react
 import {NativeStackScreenProps} from "react-native-screens/native-stack";
 import {useTheme} from "@react-navigation/native";
 import {useState} from "react";
-import {TextInput, RadioButton, FAB} from "react-native-paper";
+import {TextInput, RadioButton, FAB, Snackbar} from "react-native-paper";
 import {getDBConnection, initDB, insertBottles} from "../services/db-interface.ts";
 
 interface AddBottleProps {
@@ -14,10 +14,23 @@ const AddBottle = ({navigation}: NativeStackScreenProps<any>) => {
     const {colors} = useTheme();
 
     const [name, setName] = useState("");
-    const [vintageYear, setVintageYear] = useState("2020");
+    const [vintageYear, setVintageYear] = useState("");
     const [color, setColor] = useState('red');
 
+    const [snackbarVisible, setSnackbarVisible] = useState(false);
+    const [snackbarText, setSnackbarText] = useState("");
+
     const saveToDb = async () => {
+        if (name == "") {
+            setSnackbarText("Appellation requise");
+            setSnackbarVisible(true);
+            return;
+        } else if (vintageYear == "") {
+            setSnackbarText("Millésime requis");
+            setSnackbarVisible(true);
+            return;
+        }
+
         const db = await getDBConnection();
         await initDB(db);
         await insertBottles(db, [{
@@ -28,7 +41,7 @@ const AddBottle = ({navigation}: NativeStackScreenProps<any>) => {
         navigation.goBack();
     }
 
-    return <SafeAreaView>
+    return <SafeAreaView style={{flex: 1}}>
         <StatusBar/>
         <ScrollView>
             <TextInput
@@ -84,8 +97,13 @@ const AddBottle = ({navigation}: NativeStackScreenProps<any>) => {
                 icon={"content-save"}
                 label={"Sauvegarder"}
                 onPress={saveToDb}
+                mode={"flat"}
+                style={{
+                    margin: 10
+                }}
             />
         </ScrollView>
+        <Snackbar visible={snackbarVisible} onDismiss={() => setSnackbarVisible(false)} style={{position: "absolute", bottom: 10}}>{snackbarText}</Snackbar>
     </SafeAreaView>
 }
 
