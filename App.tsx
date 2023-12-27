@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Home} from "./src/screens/Home.tsx";
 import {DefaultTheme, NavigationContainer} from "@react-navigation/native";
 import {createStackNavigator} from '@react-navigation/stack';

@@ -8,6 +8,7 @@ import {Appbar, FAB} from "react-native-paper";
 import {NavigationProp, useIsFocused, useTheme} from "@react-navigation/native";
 import {getBottles, getDBConnection, initDB} from "../services/db-interface.ts";
 import {BottleType} from "../models/BottleType.tsx";
+import CellarSummary from "../components/CellarSummary.tsx";
 
 interface HomeProps {
     navigation: NavigationProp<any>,
@@ -72,6 +73,10 @@ export const Home = ({navigation, route}: HomeProps) => {
                 ))}
 
             </View>
+
+            <CellarSummary
+                capacity={50}
+            />
         </ScrollView>
         <FAB
             icon={"plus"}
