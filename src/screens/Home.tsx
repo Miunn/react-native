@@ -41,7 +41,7 @@ export const Home = ({navigation, route}: HomeProps) => {
             <Appbar.Content title={route.params.title} />
             <Appbar.Action icon="magnify" onPress={() => {}} />
         </Appbar.Header>
-        <ScrollView style={styles.container} contentContainerStyle={{rowGap: 30, paddingBottom: 60}}>
+        <ScrollView contentContainerStyle={{rowGap: 30, paddingBottom: 60}}>
 
             <CellarFill
                 bottles={bottles.length}
@@ -87,9 +87,6 @@ export const Home = ({navigation, route}: HomeProps) => {
 }
 
 const styles = StyleSheet.create({
-    container: {
-
-    },
     title: {
         fontSize: 40,
     },
