@@ -76,6 +76,7 @@ export const Home = ({navigation, route}: HomeProps) => {
 
             <CellarSummary
                 capacity={50}
+                bottles={bottles}
             />
         </ScrollView>
         <FAB

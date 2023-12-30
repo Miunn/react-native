@@ -1,32 +1,50 @@
-import {Dimensions, Text, View} from "react-native";
+import {View} from "react-native";
 import {useTheme} from "@react-navigation/native";
+import {BottleType} from "../models/BottleType.tsx";
+import {JSX, useEffect, useState} from "react";
+import {CellarPin} from "./CellarPin.tsx";
 
 interface CellarSummaryProps {
-    capacity: number
+    capacity: number,
+    bottles: BottleType[],
 }
 
-const CellarSummary = ({capacity}: CellarSummaryProps) => {
+const CellarSummary = ({capacity, bottles}: CellarSummaryProps) => {
 
     const {colors} = useTheme();
-    const screenWidth = Dimensions.get("screen").width;
+    const [elements, setElements] = useState<JSX.Element[]>([]);
+    const [pinId, setPinId] = useState(0);
 
-    let elements = [];
+    useEffect(() => {
+        let arr: JSX.Element[] = [];
+        for (let i = 0; i < capacity; i++) {
+            let pinColor = "transparent";
+            if (bottles[i]) {
+                switch (bottles[i].color) {
+                    case "red":
+                        pinColor = "red";
+                        break;
+                    case "pink":
+                        pinColor = "pink";
+                        break;
+                    case "white":
+                        pinColor = "white";
+                        break;
+                }
+            }
 
-    for (let i = 0; i < capacity; i++) {
-        elements.push(
-            <View
-                key={i}
-                style={{
-                    width: 50,
-                    height: 50,
-                    borderStyle: "solid",
-                    borderColor: "#3C74A8",
-                    borderWidth: 3,
-                    borderRadius: 50
-                }}
-            />
-        )
-    }
+            arr.push(
+                <CellarPin
+                    pinKey={pinId}
+                    color={pinColor}
+                />
+            )
+
+            setPinId(pinId + 1);
+        }
+
+        setElements(arr);
+    }, [capacity, bottles]);
 
     return (
         <View style={{
@@ -35,7 +53,6 @@ const CellarSummary = ({capacity}: CellarSummaryProps) => {
             justifyContent: "center",
             gap: 8,
             alignSelf: "center",
-            backgroundColor: "green"
         }}>
             {elements.map((element) =>
                 element
