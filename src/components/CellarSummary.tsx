@@ -2,7 +2,7 @@ import {View} from "react-native";
 import {useTheme} from "@react-navigation/native";
 import {BottleType} from "../models/BottleType.tsx";
 import {JSX, useEffect, useState} from "react";
-import {CellarPin} from "./CellarPin.tsx";
+import CellarPin from "./CellarPin.tsx";
 
 interface CellarSummaryProps {
     capacity: number,
@@ -12,37 +12,19 @@ interface CellarSummaryProps {
 const CellarSummary = ({capacity, bottles}: CellarSummaryProps) => {
 
     const {colors} = useTheme();
-    const [elements, setElements] = useState<JSX.Element[]>([]);
+    const [elements, setElements] = useState<{ id:number, bottle:BottleType|undefined }[]>([]);
     const [pinId, setPinId] = useState(0);
 
     useEffect(() => {
-        let arr: JSX.Element[] = [];
+        let arr: {id:number, bottle:BottleType|undefined}[] = [];
         for (let i = 0; i < capacity; i++) {
-            let pinColor = "transparent";
-            if (bottles[i]) {
-                switch (bottles[i].color) {
-                    case "red":
-                        pinColor = "red";
-                        break;
-                    case "pink":
-                        pinColor = "pink";
-                        break;
-                    case "white":
-                        pinColor = "white";
-                        break;
-                }
-            }
+            let curr = {
+                id: i,
+                bottle : bottles[i],
+            };
 
-            arr.push(
-                <CellarPin
-                    pinKey={pinId}
-                    color={pinColor}
-                />
-            )
-
-            setPinId(pinId + 1);
+            arr.push(curr);
         }
-
         setElements(arr);
     }, [capacity, bottles]);
 
@@ -55,7 +37,10 @@ const CellarSummary = ({capacity, bottles}: CellarSummaryProps) => {
             alignSelf: "center",
         }}>
             {elements.map((element) =>
-                element
+                <CellarPin
+                    key={element.id}
+                    bottle={element.bottle}
+                />
             )}
         </View>
     )

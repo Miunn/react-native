@@ -1,14 +1,15 @@
 import {View} from "react-native";
+import {BottleType} from "../models/BottleType.tsx";
+import {useEffect} from "react";
+import bottles from "../screens/Bottles.tsx";
 
 interface CellarPinProps {
-    pinKey: number,
-    color: string
+    bottle: BottleType|undefined,
 }
 
-export const CellarPin = ({color, pinKey}: CellarPinProps) => {
+const CellarPin = ({bottle}: CellarPinProps) => {
     return (
         <View
-            key={pinKey}
             style={{
                 width: 50,
                 height: 50,
@@ -16,8 +17,10 @@ export const CellarPin = ({color, pinKey}: CellarPinProps) => {
                 borderColor: "#3C74A8",
                 borderWidth: 3,
                 borderRadius: 50,
-                backgroundColor: color
+                backgroundColor: bottle?.color
             }}
         />
     )
 }
+
+export default CellarPin;

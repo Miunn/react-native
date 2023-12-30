@@ -18,6 +18,9 @@ const Theme = {
         text: 'rgb(28, 28, 30)',
         border: 'rgb(199, 199, 204)',
         notification: 'rgb(255, 69, 58)',
+        redWine: 'rgb(255, 0, 0)',
+        pinkWine: 'rgb(222,89,245)',
+        whiteWind: 'rgb(200, 200, 200)',
     }
 }
 

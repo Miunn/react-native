@@ -20,6 +20,7 @@ export const Home = ({navigation, route}: HomeProps) => {
     const isFocused = useIsFocused();
     const {colors} = useTheme();
 
+    const [capacity, setCapacity] = useState(50);
     const [bottles, setBottles] = useState<BottleType[]>([]);
     const loadBottlesCallback = useCallback(async () => {
         try {
@@ -34,7 +35,7 @@ export const Home = ({navigation, route}: HomeProps) => {
 
     useEffect(() => {
         loadBottlesCallback();
-    }, [loadBottlesCallback, isFocused, bottles]);
+    }, [loadBottlesCallback, isFocused]);
 
     return <SafeAreaView style={{flex: 1}}>
         <Appbar.Header>
@@ -45,7 +46,7 @@ export const Home = ({navigation, route}: HomeProps) => {
 
             <CellarFill
                 bottles={bottles.length}
-                capacity={50}
+                capacity={capacity}
                 style={{
                     marginTop: 30,
                     marginLeft: 10,
@@ -75,7 +76,7 @@ export const Home = ({navigation, route}: HomeProps) => {
             </View>
 
             <CellarSummary
-                capacity={50}
+                capacity={capacity}
                 bottles={bottles}
             />
         </ScrollView>
