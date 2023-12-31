@@ -3,4 +3,5 @@ export type BottleType = {
     name: string,
     vintageYear: number,
     color: string,
+    imageUri: string,
 }

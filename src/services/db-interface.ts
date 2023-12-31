@@ -10,7 +10,7 @@ export const getDBConnection = async () => {
 
 export const initDB = async (db: SQLiteDatabase) => {
     // create table if not exists
-    await initTable(db, "Bottles", "name TEXT NOT NULL, vintageYear INTEGER NOT NULL, color TEXT NOT NULL");
+    await initTable(db, "Bottles", "name TEXT NOT NULL, vintageYear INTEGER NOT NULL, color TEXT NOT NULL, imageUri TEXT");
 };
 
 export const initTable = async (db: SQLiteDatabase, tableName: string, schema: string) => {
@@ -33,7 +33,8 @@ export const getBottles = async (db:SQLiteDatabase): Promise<BottleType[]> => {
                     id: item.rowid,
                     name: item.name,
                     vintageYear: item.vintageYear,
-                    color: item.color
+                    color: item.color,
+                    imageUri: item.imageUri
                 });
             }
         });
