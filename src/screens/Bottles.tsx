@@ -20,7 +20,9 @@ const Bottles = ({navigation, route}: BottlesProps) => {
                 <Appbar.Action icon="magnify" onPress={() => {
                 }}/>
             </Appbar.Header>
-            <BottlesList/>
+            <BottlesList
+                navigation={navigation}
+            />
             <FAB
                 icon={"plus"}
                 onPress={() => navigation.navigate("addBottle")}

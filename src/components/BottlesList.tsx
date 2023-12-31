@@ -1,11 +1,12 @@
-import {useIsFocused, useTheme} from "@react-navigation/native";
+import {NavigationProp, useIsFocused, useTheme} from "@react-navigation/native";
 import {useCallback, useEffect, useState} from "react";
 import {BottleType} from "../models/BottleType.tsx";
 import {getBottles, getDBConnection, initDB} from "../services/db-interface.ts";
 import {ScrollView, Text} from "react-native";
 import {List} from "react-native-paper";
+import {NativeStackNavigatorProps} from "react-native-screens/lib/typescript/native-stack/types";
 
-const BottlesList = () => {
+const BottlesList = ({navigation}: any) => {
     const isFocused = useIsFocused();
     const {colors} = useTheme();
 
@@ -49,6 +50,7 @@ const BottlesList = () => {
                         title={bottle.name}
                         description={`${bottle.vintageYear} - ${colorString}`}
                         left={props => <List.Icon {...props} icon={"bottle-wine"} /> }
+                        onPress={() => navigation.navigate('bottle', {bottle: bottle})}
                     />
                 )
             })}

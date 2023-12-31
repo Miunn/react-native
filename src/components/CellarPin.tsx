@@ -1,7 +1,5 @@
 import {View} from "react-native";
 import {BottleType} from "../models/BottleType.tsx";
-import {useEffect} from "react";
-import bottles from "../screens/Bottles.tsx";
 
 interface CellarPinProps {
     bottle: BottleType|undefined,
@@ -19,6 +17,7 @@ const CellarPin = ({bottle}: CellarPinProps) => {
                 borderRadius: 50,
                 backgroundColor: bottle?.color
             }}
+
         />
     )
 }

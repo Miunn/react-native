@@ -3,6 +3,7 @@ import {Home} from "./src/screens/Home.tsx";
 import {DefaultTheme, NavigationContainer} from "@react-navigation/native";
 import {createStackNavigator} from '@react-navigation/stack';
 import AddBottle from "./src/screens/AddBottle.tsx";
+import Bottle from "./src/screens/Bottle.tsx";
 import {createMaterialBottomTabNavigator} from "react-native-paper/react-navigation";
 import {SafeAreaProvider} from "react-native-safe-area-context";
 import {Icon} from "react-native-paper";
@@ -31,6 +32,7 @@ function HomeStackScreen() {
         <Stack.Navigator screenOptions={{headerShown: false}}>
             <Stack.Screen name={"cave"} component={Home} options={{title: "Ma cave"}} initialParams={{title: "Ma cave"}}/>
             <Stack.Screen name={"addBottle"} component={AddBottle} options={{title: "Ajouter une bouteille"}} initialParams={{title: "Ajouter une bouteille"}}/>
+            <Stack.Screen name={"bottle"} component={Bottle} initialParams={{title: "Bottle"}} />
         </Stack.Navigator>
     )
 }
@@ -42,6 +44,7 @@ function BottlesStackScreen() {
         <Stack.Navigator screenOptions={{headerShown: false}}>
             <Stack.Screen name={"bottles"} component={Bottles} options={{title: "Mes bouteilles"}} initialParams={{title: "Mes bouteilles"}}/>
             <Stack.Screen name={"addBottle"} component={AddBottle} options={{title: "Ajouter une bouteille"}} initialParams={{title: "Ajouter une bouteille"}}/>
+            <Stack.Screen name={"bottle"} component={Bottle} initialParams={{title: "Bottle"}} />
         </Stack.Navigator>
     )
 }
