@@ -13,6 +13,8 @@ const Bottle = ({navigation, route}: any) => {
                 <Appbar.BackAction onPress={() => navigation.goBack()} />
                 <Appbar.Content title={bottle.name}/>
             </Appbar.Header>
+
+
             <Text>{bottle.name}</Text>
         </SafeAreaView>
     )

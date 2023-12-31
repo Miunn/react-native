@@ -1,13 +1,20 @@
-import {View} from "react-native";
+import {Pressable, View} from "react-native";
 import {BottleType} from "../models/BottleType.tsx";
+import {NativeStackNavigationProp} from "@react-navigation/native-stack";
 
 interface CellarPinProps {
     bottle: BottleType|undefined,
+    navigation: NativeStackNavigationProp<any>,
 }
 
-const CellarPin = ({bottle}: CellarPinProps) => {
+const CellarPin = ({bottle, navigation}: CellarPinProps) => {
     return (
-        <View
+        <Pressable
+            onPress={() => {
+                if (bottle !== undefined) {
+                    navigation.navigate("bottle", {bottle: bottle})
+                }
+            }}
             style={{
                 width: 50,
                 height: 50,

@@ -9,9 +9,10 @@ import {NavigationProp, useIsFocused, useTheme} from "@react-navigation/native";
 import {getBottles, getDBConnection, initDB} from "../services/db-interface.ts";
 import {BottleType} from "../models/BottleType.tsx";
 import CellarSummary from "../components/CellarSummary.tsx";
+import {NativeStackNavigationProp} from "@react-navigation/native-stack";
 
 interface HomeProps {
-    navigation: NavigationProp<any>,
+    navigation: NativeStackNavigationProp<any>,
     route: any
 }
 
@@ -76,6 +77,7 @@ export const Home = ({navigation, route}: HomeProps) => {
             </View>
 
             <CellarSummary
+                navigation={navigation}
                 capacity={capacity}
                 bottles={bottles}
             />

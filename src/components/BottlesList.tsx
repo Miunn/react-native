@@ -1,10 +1,9 @@
-import {NavigationProp, useIsFocused, useTheme} from "@react-navigation/native";
+import {useIsFocused, useTheme} from "@react-navigation/native";
 import {useCallback, useEffect, useState} from "react";
 import {BottleType} from "../models/BottleType.tsx";
 import {getBottles, getDBConnection, initDB} from "../services/db-interface.ts";
-import {ScrollView, Text} from "react-native";
+import {ScrollView} from "react-native";
 import {List} from "react-native-paper";
-import {NativeStackNavigatorProps} from "react-native-screens/lib/typescript/native-stack/types";
 
 const BottlesList = ({navigation}: any) => {
     const isFocused = useIsFocused();
