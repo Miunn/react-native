@@ -8,6 +8,7 @@ import {createMaterialBottomTabNavigator} from "react-native-paper/react-navigat
 import {SafeAreaProvider} from "react-native-safe-area-context";
 import {Icon} from "react-native-paper";
 import Bottles from "./src/screens/Bottles.tsx";
+import CameraScreen from "./src/screens/CameraScreen.tsx";
 
 const Theme = {
     ...DefaultTheme,
@@ -33,6 +34,7 @@ function HomeStackScreen() {
             <Stack.Screen name={"cave"} component={Home} options={{title: "Ma cave"}} initialParams={{title: "Ma cave"}}/>
             <Stack.Screen name={"addBottle"} component={AddBottle} options={{title: "Ajouter une bouteille"}} initialParams={{title: "Ajouter une bouteille"}}/>
             <Stack.Screen name={"bottle"} component={Bottle} initialParams={{title: "Bottle"}} />
+            <Stack.Screen name={"camera"} component={CameraScreen} initialParams={{title: "Prendre une photo"}} />
         </Stack.Navigator>
     )
 }
@@ -45,6 +47,7 @@ function BottlesStackScreen() {
             <Stack.Screen name={"bottles"} component={Bottles} options={{title: "Mes bouteilles"}} initialParams={{title: "Mes bouteilles"}}/>
             <Stack.Screen name={"addBottle"} component={AddBottle} options={{title: "Ajouter une bouteille"}} initialParams={{title: "Ajouter une bouteille"}}/>
             <Stack.Screen name={"bottle"} component={Bottle} initialParams={{title: "Bottle"}} />
+            <Stack.Screen name={"camera"} component={CameraScreen} initialParams={{title: "Prendre une photo"}} />
         </Stack.Navigator>
     )
 }

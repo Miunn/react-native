@@ -1,14 +1,30 @@
-import {Image, SafeAreaView, ScrollView, Text, View} from "react-native";
+import {Image, Linking, Pressable, SafeAreaView, ScrollView, Text, View} from "react-native";
 import {Appbar} from "react-native-paper";
-import React from "react";
+import React, {useCallback} from "react";
 import {BottleType} from "../models/BottleType.tsx";
 import {useTheme} from "@react-navigation/native";
+import {useCameraPermission} from "react-native-vision-camera";
 
 const Bottle = ({navigation, route}: any) => {
 
     const {colors} = useTheme();
     const bottle: BottleType = route.params.bottle;
     const imageUri = bottle.imageUri !== undefined ? bottle.imageUri : "";
+    const {hasPermission, requestPermission} = useCameraPermission();
+
+    const getCameraView = async () => {
+        if (hasPermission) {
+            navigation.navigate("camera");
+        } else {
+            const permission = await requestPermission();
+
+            if (permission) {
+                navigation.navigate("camera");
+            } else {
+                await Linking.openSettings();
+            }
+        }
+    };
 
     return (
         <SafeAreaView style={{flex: 1}}>
@@ -23,14 +39,17 @@ const Bottle = ({navigation, route}: any) => {
                     alignItems: "center",
                     gap: 10,
                 }}>
-                    <View style={{
-                        width: 175,
-                        height: 175,
-                        justifyContent: "center",
-                        alignItems: "center"
-                    }}>
+                    <Pressable
+                        onPress={getCameraView}
+                        style={{
+                            width: 175,
+                            height: 175,
+                            justifyContent: "center",
+                            alignItems: "center"
+                        }}
+                    >
                         <Image source={require('../assets/add_a_photo.png')}/>
-                    </View>
+                    </Pressable>
 
                     <View>
                         <Text style={{
