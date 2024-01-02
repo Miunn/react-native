@@ -173,8 +173,6 @@ const CameraScreen = ({navigation}: NativeStackScreenProps<any>) => {
                                 enableFpsGraph={true}
                                 orientation="portrait"
                                 photo={true}
-                                video={true}
-                                audio={false}
                             />
                         </TapGestureHandler>
                     </Reanimated.View>

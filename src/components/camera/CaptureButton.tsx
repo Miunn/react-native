@@ -55,9 +55,6 @@ const _CaptureButton: React.FC<Props> = ({
                                              style,
                                              ...props
                                          }): React.ReactElement => {
-    const pressDownDate = useRef<Date | undefined>(undefined)
-    const isRecording = useRef(false)
-    const recordingProgress = useSharedValue(0)
     const takePhotoOptions = useMemo<TakePhotoOptions>(
         () => ({
             qualityPrioritization: 'speed',
@@ -81,47 +78,6 @@ const _CaptureButton: React.FC<Props> = ({
             console.error('Failed to take photo!', e)
         }
     }, [onMediaCaptured, takePhotoOptions, camera.current])
-
-    const onStoppedRecording = useCallback(() => {
-        isRecording.current = false
-        cancelAnimation(recordingProgress)
-        console.log('stopped recording video!')
-    }, [recordingProgress])
-    const stopRecording = useCallback(async () => {
-        try {
-            if (camera.current == null) throw new Error('Camera ref is null!')
-
-            console.log('calling stopRecording()...')
-            await camera.current.stopRecording()
-            console.log('called stopRecording()!')
-        } catch (e) {
-            console.error('failed to stop recording!', e)
-        }
-    }, [camera.current])
-    const startRecording = useCallback(() => {
-        try {
-            if (camera.current == null) throw new Error('Camera ref is null!')
-
-            console.log('calling startRecording()...')
-            camera.current.startRecording({
-                flash: flash,
-                onRecordingError: (error) => {
-                    console.error('Recording failed!', error)
-                    onStoppedRecording()
-                },
-                onRecordingFinished: (video) => {
-                    console.log(`Recording successfully finished! ${video.path}`)
-                    onMediaCaptured(video, 'video')
-                    onStoppedRecording()
-                },
-            })
-            // TODO: wait until startRecording returns to actually find out if the recording has successfully started
-            console.log('called startRecording()!')
-            isRecording.current = true
-        } catch (e) {
-            console.error('failed to start recording!', e, 'camera')
-        }
-    }, [flash, onMediaCaptured, onStoppedRecording, camera.current])
     //#endregion
 
     //#region Tap handler
@@ -139,37 +95,11 @@ const _CaptureButton: React.FC<Props> = ({
             // if yes, use that. If no, we just try calling takePhoto() again
             console.debug(`state: ${Object.keys(State)[event.state]}`);
             switch (event.state) {
-                case State.BEGAN: {
-                    // enter "recording mode"
-                    recordingProgress.value = 0
-                    isPressingButton.value = true
-                    const now = new Date()
-                    pressDownDate.current = now
-                    setTimeout(() => {
-                        if (pressDownDate.current === now) {
-                            // user is still pressing down after 200ms, so his intention is to create a video
-                            startRecording()
-                        }
-                    }, START_RECORDING_DELAY)
-                    setIsPressingButton(true)
-                    return
-                }
                 case State.END:
                 case State.FAILED:
                 case State.CANCELLED: {
-                    // exit "recording mode"
                     try {
-                        if (pressDownDate.current == null) throw new Error('PressDownDate ref .current was null!')
-                        const now = new Date()
-                        const diff = now.getTime() - pressDownDate.current.getTime()
-                        pressDownDate.current = undefined
-                        if (diff < START_RECORDING_DELAY) {
-                            // user has released the button within 200ms, so his intention is to take a single picture.
-                            await takePhoto();
-                        } else {
-                            // user has held the button for more than 200ms, so he has been recording this entire time.
-                            await stopRecording();
-                        }
+                        await takePhoto();
                     } finally {
                         setTimeout(() => {
                             isPressingButton.value = false
@@ -182,7 +112,7 @@ const _CaptureButton: React.FC<Props> = ({
                     break
             }
         },
-        [setIsPressingButton, startRecording, stopRecording, takePhoto, recordingProgress.value, isPressingButton.value],
+        [setIsPressingButton, takePhoto, isPressingButton.value],
     );
     //#endregion
     //#region Pan handler
