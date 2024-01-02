@@ -43,11 +43,11 @@ const SCALE_FULL_ZOOM = 3;
 const CameraScreen = ({navigation}: NativeStackScreenProps<any>) => {
 
     const camera = useRef<Camera>(null);
-    const device = useCameraDevice('back');
+    const [cameraPosition, setCameraPosition] = useState<'front' | 'back'>('back');
+    const device = useCameraDevice(cameraPosition);
     const isFocused = useIsFocused();
     const appState = useAppState();
-    const isActive = isFocused && appState === "active";
-    const [cameraPosition, setCameraPosition] = useState<'front' | 'back'>('back');
+    const [isActive, setIsActive] = useState(false);
     const [enableHdr, setEnableHdr] = useState(false);
     const [isCameraInitialized, setIsCameraInitialized] = useState(false);
     const [flash, setFlash] = useState<'off' | 'on'>('off')
@@ -84,8 +84,10 @@ const CameraScreen = ({navigation}: NativeStackScreenProps<any>) => {
 
     const onInitialized = useCallback(() => {
         console.log('Camera initialized!')
-        setIsCameraInitialized(true)
-    }, []);
+        setIsCameraInitialized(true);
+        setIsActive(isFocused && appState === "active");
+        console.log("Set active to", isFocused && appState === "active");
+    }, [isFocused, appState]);
 
     const onPinchGesture = useAnimatedGestureHandler<PinchGestureHandlerGestureEvent, { startZoom?: number }>({
         onStart: (_, context) => {

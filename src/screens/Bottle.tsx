@@ -1,6 +1,6 @@
 import {Image, Linking, Pressable, SafeAreaView, ScrollView, Text, View} from "react-native";
 import {Appbar} from "react-native-paper";
-import React, {useCallback} from "react";
+import React, {useCallback, useEffect} from "react";
 import {BottleType} from "../models/BottleType.tsx";
 import {useTheme} from "@react-navigation/native";
 import {useCameraPermission} from "react-native-vision-camera";
@@ -11,6 +11,13 @@ const Bottle = ({navigation, route}: any) => {
     const bottle: BottleType = route.params.bottle;
     const imageUri = bottle.imageUri !== undefined ? bottle.imageUri : "";
     const {hasPermission, requestPermission} = useCameraPermission();
+
+    useEffect(() => {
+        navigation.getParent()?.setOptions({
+            tabBarStyle: { display: 'none' },
+        });
+        console.log("Hide");
+    }, []);
 
     const getCameraView = async () => {
         if (hasPermission) {
@@ -25,6 +32,17 @@ const Bottle = ({navigation, route}: any) => {
             }
         }
     };
+
+    useEffect(() => {
+        navigation.getParent()?.setOptions({
+            tabBarStyle: {
+                display: "none"
+            }
+        });
+        return () => navigation.getParent()?.setOptions({
+            tabBarStyle: undefined
+        });
+    }, [navigation]);
 
     return (
         <SafeAreaView style={{flex: 1}}>

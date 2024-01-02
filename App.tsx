@@ -75,9 +75,9 @@ function App(): React.JSX.Element {
 
 
                         return <Icon source={iconName} size={20} color={color} />
-                    }
+                    },
                 })}>
-                    <Tab.Screen name={"caveTab"} component={HomeStackScreen} options={{title: "Ma cave"}}/>
+                    <Tab.Screen name={"caveTab"} component={HomeStackScreen} options={{title: "Ma cave"}} />
                     <Tab.Screen name={"bottlesTab"} component={BottlesStackScreen} options={{title: "Mes bouteilles"}}/>
                 </Tab.Navigator>
             </NavigationContainer>
