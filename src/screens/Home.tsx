@@ -71,7 +71,9 @@ export const Home = ({navigation, route}: HomeProps) => {
                 {bottles.map((bottle) => (
                     <BottleSummary
                         key={bottle.id}
-                        bottle={bottle} />
+                        bottle={bottle}
+                        navigation={navigation}
+                    />
                 ))}
 
             </View>
