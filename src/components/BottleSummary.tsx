@@ -23,13 +23,13 @@ export const BottleSummary = ({bottle, navigation}: BottleSummaryProps) => {
     let colorString;
     switch (bottle.color) {
         case 'red':
-            colorString = "Vin Rouge";
+            colorString = "Rouge";
             break;
         case 'white':
-            colorString = "Vin Rouge";
+            colorString = "Blanc";
             break;
         case 'pink':
-            colorString = "Vin Rouge";
+            colorString = "Rosé";
             break;
         default:
             colorString = `Vin ${bottle.color}`;
