@@ -34,6 +34,17 @@ export const Home = ({navigation, route}: HomeProps) => {
         }
     }, []);
 
+    const bottleAmount = (color: string): number => {
+        let amount = 0
+        for (let bottle of bottles) {
+            console.log(bottle)
+            if (bottle.color === color) {
+                amount++
+            }
+        }
+        return amount
+    }
+
     useEffect(() => {
         loadBottlesCallback();
     }, [loadBottlesCallback, isFocused]);
@@ -56,9 +67,9 @@ export const Home = ({navigation, route}: HomeProps) => {
             />
 
             <WineRowSummary
-                redAmount={2}
-                whiteAmount={0}
-                pinkAmount={0}
+                redAmount={bottleAmount("red")}
+                whiteAmount={bottleAmount("white")}
+                pinkAmount={bottleAmount("pink")}
             />
 
             <View>
