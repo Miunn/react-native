@@ -1,10 +1,8 @@
-import {Text, View} from "react-native";
 import {useTheme} from "@react-navigation/native";
-import {Button, Card, Dialog, Icon, PaperProvider, Portal, TouchableRipple} from "react-native-paper";
+import {Button, Card, Dialog, Icon, Portal, Text} from "react-native-paper";
 import {deleteBottle, getDBConnection} from "../services/db-interface.ts";
 import {BottleType} from "../models/BottleType.tsx";
-import {PressableOpacity} from "react-native-pressable-opacity";
-import {useCallback, useState} from "react";
+import {useState} from "react";
 
 interface BottleSummaryProps {
     bottle: BottleType,
@@ -46,9 +44,7 @@ export const BottleSummary = ({bottle, navigation}: BottleSummaryProps) => {
             onPress={() => navigation.navigate("bottle", {bottle: bottle})}>
             <Card.Title title={bottle.name} subtitle={`${bottle.vintageYear} - ${colorString}`} left={icon}/>
             <Card.Content>
-                <Text style={{
-                    color: colors.text
-                }}>Content</Text>
+                <Text>Content</Text>
             </Card.Content>
             <Card.Actions>
                 <Button mode={"text"} onPress={() => setRemoveDialogVisisble(true)}>Sortir la bouteille</Button>
