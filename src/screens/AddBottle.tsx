@@ -2,7 +2,7 @@ import {SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, View} from "react
 import {NativeStackScreenProps} from "react-native-screens/native-stack";
 import {useTheme} from "@react-navigation/native";
 import React, {useState} from "react";
-import {TextInput, RadioButton, FAB, Snackbar} from "react-native-paper";
+import {TextInput, RadioButton, FAB, Snackbar, Appbar} from "react-native-paper";
 import {getDBConnection, initDB, insertBottles} from "../services/db-interface.ts";
 
 interface AddBottleProps {
@@ -42,7 +42,10 @@ const AddBottle = ({navigation}: NativeStackScreenProps<any>) => {
     }
 
     return <SafeAreaView style={{flex: 1}}>
-        <StatusBar/>
+        <Appbar.Header>
+            <Appbar.BackAction onPress={() => navigation.goBack()}/>
+            <Appbar.Content title={"Ajouter une bouteille"}/>
+        </Appbar.Header>
         <ScrollView>
             <TextInput
                 label={"Appellation"}
