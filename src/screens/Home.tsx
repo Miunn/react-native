@@ -4,7 +4,7 @@ import {SafeAreaView, ScrollView, StyleSheet, Text, View} from "react-native";
 import CellarFill from "../components/CellarFill.tsx";
 import WineRowSummary from "../components/WineRowSummary.tsx";
 import {BottleSummary} from "../components/BottleSummary.tsx";
-import {Appbar, FAB} from "react-native-paper";
+import {Appbar, FAB, PaperProvider} from "react-native-paper";
 import {NavigationProp, useIsFocused, useTheme} from "@react-navigation/native";
 import {getBottles, getDBConnection, initDB} from "../services/db-interface.ts";
 import {BottleType} from "../models/BottleType.tsx";
@@ -51,8 +51,9 @@ export const Home = ({navigation, route}: HomeProps) => {
 
     return <SafeAreaView style={{flex: 1}}>
         <Appbar.Header>
-            <Appbar.Content title={route.params.title} />
-            <Appbar.Action icon="magnify" onPress={() => {}} />
+            <Appbar.Content title={route.params.title}/>
+            <Appbar.Action icon="magnify" onPress={() => {
+            }}/>
         </Appbar.Header>
         <ScrollView contentContainerStyle={{rowGap: 30, paddingBottom: 60}}>
 

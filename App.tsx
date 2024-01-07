@@ -6,7 +6,7 @@ import AddBottle from "./src/screens/AddBottle.tsx";
 import Bottle from "./src/screens/Bottle.tsx";
 import {createMaterialBottomTabNavigator} from "react-native-paper/react-navigation";
 import {SafeAreaProvider} from "react-native-safe-area-context";
-import {Icon} from "react-native-paper";
+import {Icon, PaperProvider} from "react-native-paper";
 import Bottles from "./src/screens/Bottles.tsx";
 import CameraScreen from "./src/screens/CameraScreen.tsx";
 
@@ -31,10 +31,12 @@ function HomeStackScreen() {
 
     return (
         <Stack.Navigator screenOptions={{headerShown: false}}>
-            <Stack.Screen name={"cave"} component={Home} options={{title: "Ma cave"}} initialParams={{title: "Ma cave"}}/>
-            <Stack.Screen name={"addBottle"} component={AddBottle} options={{title: "Ajouter une bouteille"}} initialParams={{title: "Ajouter une bouteille"}}/>
-            <Stack.Screen name={"bottle"} component={Bottle} initialParams={{title: "Bottle"}} />
-            <Stack.Screen name={"camera"} component={CameraScreen} initialParams={{title: "Prendre une photo"}} />
+            <Stack.Screen name={"cave"} component={Home} options={{title: "Ma cave"}}
+                          initialParams={{title: "Ma cave"}}/>
+            <Stack.Screen name={"addBottle"} component={AddBottle} options={{title: "Ajouter une bouteille"}}
+                          initialParams={{title: "Ajouter une bouteille"}}/>
+            <Stack.Screen name={"bottle"} component={Bottle} initialParams={{title: "Bottle"}}/>
+            <Stack.Screen name={"camera"} component={CameraScreen} initialParams={{title: "Prendre une photo"}}/>
         </Stack.Navigator>
     )
 }
@@ -44,10 +46,12 @@ function BottlesStackScreen() {
 
     return (
         <Stack.Navigator screenOptions={{headerShown: false}}>
-            <Stack.Screen name={"bottles"} component={Bottles} options={{title: "Mes bouteilles"}} initialParams={{title: "Mes bouteilles"}}/>
-            <Stack.Screen name={"addBottle"} component={AddBottle} options={{title: "Ajouter une bouteille"}} initialParams={{title: "Ajouter une bouteille"}}/>
-            <Stack.Screen name={"bottle"} component={Bottle} initialParams={{title: "Bottle"}} />
-            <Stack.Screen name={"camera"} component={CameraScreen} initialParams={{title: "Prendre une photo"}} />
+            <Stack.Screen name={"bottles"} component={Bottles} options={{title: "Mes bouteilles"}}
+                          initialParams={{title: "Mes bouteilles"}}/>
+            <Stack.Screen name={"addBottle"} component={AddBottle} options={{title: "Ajouter une bouteille"}}
+                          initialParams={{title: "Ajouter une bouteille"}}/>
+            <Stack.Screen name={"bottle"} component={Bottle} initialParams={{title: "Bottle"}}/>
+            <Stack.Screen name={"camera"} component={CameraScreen} initialParams={{title: "Prendre une photo"}}/>
         </Stack.Navigator>
     )
 }
@@ -58,29 +62,32 @@ function App(): React.JSX.Element {
 
     return (
         <SafeAreaProvider>
-            <NavigationContainer theme={Theme}>
-                <Tab.Navigator screenOptions={({route}) => ({
-                    headerShown: false,
-                    tabBarIcon: ({focused, color}) => {
-                        let iconName = "";
+            <PaperProvider>
+                <NavigationContainer theme={Theme}>
+                    <Tab.Navigator screenOptions={({route}) => ({
+                        headerShown: false,
+                        tabBarIcon: ({focused, color}) => {
+                            let iconName = "";
 
-                        switch (route.name) {
-                            case "caveTab":
-                                iconName = focused ? "storefront" : "storefront-outline"
-                                break;
-                            case "bottlesTab":
-                                iconName = focused ? "bottle-wine" : "bottle-wine-outline"
-                                break;
-                        }
+                            switch (route.name) {
+                                case "caveTab":
+                                    iconName = focused ? "storefront" : "storefront-outline"
+                                    break;
+                                case "bottlesTab":
+                                    iconName = focused ? "bottle-wine" : "bottle-wine-outline"
+                                    break;
+                            }
 
 
-                        return <Icon source={iconName} size={20} color={color} />
-                    },
-                })}>
-                    <Tab.Screen name={"caveTab"} component={HomeStackScreen} options={{title: "Ma cave"}} />
-                    <Tab.Screen name={"bottlesTab"} component={BottlesStackScreen} options={{title: "Mes bouteilles"}}/>
-                </Tab.Navigator>
-            </NavigationContainer>
+                            return <Icon source={iconName} size={20} color={color}/>
+                        },
+                    })}>
+                        <Tab.Screen name={"caveTab"} component={HomeStackScreen} options={{title: "Ma cave"}}/>
+                        <Tab.Screen name={"bottlesTab"} component={BottlesStackScreen}
+                                    options={{title: "Mes bouteilles"}}/>
+                    </Tab.Navigator>
+                </NavigationContainer>
+            </PaperProvider>
         </SafeAreaProvider>
     );
 }
