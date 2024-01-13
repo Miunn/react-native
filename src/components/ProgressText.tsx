@@ -1,8 +1,6 @@
-import {useAnimatedProps, useDerivedValue, useSharedValue, withTiming} from "react-native-reanimated";
-import React, {useEffect, useMemo} from "react";
+import {useDerivedValue, useSharedValue, withTiming} from "react-native-reanimated";
+import React, {useEffect} from "react";
 import {SkFont, Text} from "@shopify/react-native-skia";
-import {useTheme} from "react-native-paper";
-import {useAnimatedValue} from "react-native";
 
 interface ProgressTextProps {
     progress: number,
@@ -25,7 +23,7 @@ export const ProgressText = ({progress, centerX, y, font, textColor, duration}: 
             return Math.floor(progress*animValue.value * 100) + "%";
         }
         return Math.floor(progress * 100) + "%";
-    }, [animValue.value]);
+    });
 
     useEffect(() => {
         animValue.value = withTiming(1, {duration: duration});

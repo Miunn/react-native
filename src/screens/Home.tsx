@@ -10,14 +10,16 @@ import {getBottles, getDBConnection, initDB} from "../services/db-interface.ts";
 import {BottleType} from "../models/BottleType.tsx";
 import CellarSummary from "../components/CellarSummary.tsx";
 import {NativeStackNavigationProp} from "@react-navigation/native-stack";
+import {useTranslation, withTranslation} from "react-i18next";
 
 interface HomeProps {
     navigation: NativeStackNavigationProp<any>,
-    route: any
+    route: any,
 }
 
 export const Home = ({navigation, route}: HomeProps) => {
 
+    const { t} = useTranslation();
     const theme = useTheme();
     const isFocused = useIsFocused();
     const {colors} = useTheme();
@@ -77,7 +79,7 @@ export const Home = ({navigation, route}: HomeProps) => {
                 <Text style={{
                     fontSize: 20,
                     margin: 10
-                }}>Dernières bouteilles enregistrées</Text>
+                }}>{t('hello')} Dernières bouteilles enregistrées</Text>
 
                 {bottles.map((bottle) => (
                     <BottleSummary
