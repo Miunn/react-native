@@ -39,7 +39,8 @@
     "react-native-static-safe-area-insets": "^2.2.0",
     "react-native-vector-icons": "^10.0.3",
     "react-native-vision-camera": "^3.6.17",
-    "react-navigation": "^5.0.0"
+    "react-navigation": "^5.0.0",
+    "react-string-format": "^1.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

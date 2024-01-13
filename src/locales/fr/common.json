@@ -1,5 +1,21 @@
 {
   "translation": {
-    "hello": "Bonjour"
+    "cellar": "Ma cave",
+    "bottles": "Mes bouteilles",
+    "addBottle": "Ajouter une bouteille",
+    "bottleSum": "%d bouteille%s",
+    "redWine": "Rouge",
+    "whiteWine": "Blanc",
+    "pinkWine": "Rosé",
+    "lastSaved": "Dernière bouteilles enregistrées",
+    "takeOut": "Sortir",
+    "takeOutAsk": "Sortir la bouteille ?",
+    "takeOutSummary": "{0} de {1} sera sorti de la cave",
+    "cancel": "Annuler",
+    "bottleName": "Appellation",
+    "bottleNameRequired": "Appellation requise",
+    "bottleYear": "Millésime",
+    "bottleYearRequired": "Millésime requis",
+    "save": "Sauvegarder"
   }
 }

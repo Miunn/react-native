@@ -1,5 +1,22 @@
 {
   "translation": {
-    "hello": "Hello"
+    "cellar": "My cellar",
+    "bottles": "My bottles",
+    "bottleSum": "{0} bottle{1}",
+    "addBottle": "Add a bottle",
+    "noBottles": "No bottles",
+    "redWine": "Red",
+    "whiteWine": "White",
+    "pinkWine": "Pink",
+    "lastSavedBottles": "Last bottles registered",
+    "takeOut": "Take out",
+    "takeOutAsk": "Take out bottle ?",
+    "takeOutSummary": "{0} {1} will be removed from cellar",
+    "cancel": "Cancel",
+    "bottleName": "Designation",
+    "bottleNameRequired": "Designation required",
+    "bottleYear": "Vintage year",
+    "bottleYearRequired": "Vintage year required",
+    "save": "Save"
   }
 }

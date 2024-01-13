@@ -3,6 +3,7 @@ import {NativeStackScreenProps} from "react-native-screens/native-stack";
 import React, {useState} from "react";
 import {TextInput, RadioButton, FAB, Snackbar, Appbar, useTheme, Text} from "react-native-paper";
 import {getDBConnection, initDB, insertBottles} from "../services/db-interface.ts";
+import {useTranslation} from "react-i18next";
 
 interface AddBottleProps {
     navigation: NativeStackScreenProps<any>,
@@ -10,6 +11,7 @@ interface AddBottleProps {
 }
 
 const AddBottle = ({navigation}: NativeStackScreenProps<any>) => {
+    const {t} = useTranslation();
     const theme = useTheme();
     const {colors} = useTheme();
 
@@ -22,11 +24,11 @@ const AddBottle = ({navigation}: NativeStackScreenProps<any>) => {
 
     const saveToDb = async () => {
         if (name == "") {
-            setSnackbarText("Appellation requise");
+            setSnackbarText(t('bottleNameRequired'));
             setSnackbarVisible(true);
             return;
         } else if (vintageYear == "") {
-            setSnackbarText("Millésime requis");
+            setSnackbarText(t('bottleYearRequired'));
             setSnackbarVisible(true);
             return;
         }
@@ -44,18 +46,18 @@ const AddBottle = ({navigation}: NativeStackScreenProps<any>) => {
     return <SafeAreaView style={{flex: 1, backgroundColor: theme.colors.background}}>
         <Appbar.Header>
             <Appbar.BackAction onPress={() => navigation.goBack()}/>
-            <Appbar.Content title={"Ajouter une bouteille"}/>
+            <Appbar.Content title={t('addBottle')}/>
         </Appbar.Header>
         <ScrollView>
             <TextInput
-                label={"Appellation"}
+                label={t('bottleName')}
                 value={name}
                 onChangeText={setName}
                 mode={"outlined"}
                 style={styles.inputs}
             />
             <TextInput
-                label={"Millésime"}
+                label={t('bottleYear')}
                 inputMode={"numeric"}
                 keyboardType={"numeric"}
                 value={vintageYear}
@@ -71,25 +73,24 @@ const AddBottle = ({navigation}: NativeStackScreenProps<any>) => {
                 <View style={styles.radioContainer}>
                     <View style={styles.radioContainer}>
                         <RadioButton value={'red'}/>
-                        <Text>Rouge</Text>
+                        <Text>{t('redWine')}</Text>
                     </View>
 
                     <View style={styles.radioContainer}>
                         <RadioButton value={'white'}/>
-                        <Text>
-                            Blanc</Text>
+                        <Text>{t('whiteWine')}</Text>
                     </View>
 
                     <View style={styles.radioContainer}>
                         <RadioButton value={'pink'}/>
-                        <Text>Rosé</Text>
+                        <Text>{t('pinkWine')}</Text>
                     </View>
                 </View>
             </RadioButton.Group>
 
             <FAB
                 icon={"content-save"}
-                label={"Sauvegarder"}
+                label={t('save')}
                 onPress={saveToDb}
                 mode={"flat"}
                 style={{

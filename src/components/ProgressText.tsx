@@ -1,6 +1,7 @@
 import {useDerivedValue, useSharedValue, withTiming} from "react-native-reanimated";
 import React, {useEffect} from "react";
 import {SkFont, Text} from "@shopify/react-native-skia";
+import {useTranslation} from "react-i18next";
 
 interface ProgressTextProps {
     progress: number,
@@ -12,6 +13,7 @@ interface ProgressTextProps {
 }
 
 export const ProgressText = ({progress, centerX, y, font, textColor, duration}: ProgressTextProps) => {
+
 
     const animValue = useSharedValue(0);
 

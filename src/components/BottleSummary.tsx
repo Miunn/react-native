@@ -3,6 +3,8 @@ import {Button, Card, Dialog, Icon, Portal, Text} from "react-native-paper";
 import {deleteBottle, getDBConnection} from "../services/db-interface.ts";
 import {BottleType} from "../models/BottleType.tsx";
 import {useState} from "react";
+import {useTranslation} from "react-i18next";
+import {format} from "react-string-format";
 
 interface BottleSummaryProps {
     bottle: BottleType,
@@ -11,6 +13,7 @@ interface BottleSummaryProps {
 
 export const BottleSummary = ({bottle, navigation}: BottleSummaryProps) => {
 
+    const {t} = useTranslation();
     const {colors} = useTheme();
     const icon = (props: { size: number }) => <Icon source={"bottle-wine"} size={20}/>
     const [isRemoveDialogVisible, setRemoveDialogVisisble] = useState(false);
@@ -24,13 +27,13 @@ export const BottleSummary = ({bottle, navigation}: BottleSummaryProps) => {
     let colorString;
     switch (bottle.color) {
         case 'red':
-            colorString = "Rouge";
+            colorString = t('redWine');
             break;
         case 'white':
-            colorString = "Blanc";
+            colorString = t('whiteWine');
             break;
         case 'pink':
-            colorString = "Rosé";
+            colorString = t('pinkWine');
             break;
         default:
             colorString = `Vin ${bottle.color}`;
@@ -52,9 +55,9 @@ export const BottleSummary = ({bottle, navigation}: BottleSummaryProps) => {
 
             <Portal>
                 <Dialog visible={isRemoveDialogVisible} onDismiss={() => setRemoveDialogVisisble(false)}>
-                    <Dialog.Title>Sortir la bouteille ?</Dialog.Title>
+                    <Dialog.Title>{t('takeOutAsk')}</Dialog.Title>
                     <Dialog.Content>
-                        <Text>{bottle.name} de {bottle.vintageYear} sera sorti de la cave.</Text>
+                        <Text>{format(t('takeOutSummary'), bottle.name, bottle.vintageYear)}</Text>
                     </Dialog.Content>
                     <Dialog.Actions>
                         <Button onPress={() => setRemoveDialogVisisble(false)}>Annuler</Button>

@@ -2,6 +2,8 @@ import {StyleSheet, View} from "react-native";
 import {ProgressCircle} from "./ProgressCircle.tsx";
 import React from "react";
 import {Text} from "react-native-paper";
+import {useTranslation} from "react-i18next";
+import {format} from "react-string-format";
 
 interface CellarFillProps {
     bottles: number,
@@ -11,12 +13,11 @@ interface CellarFillProps {
 
 const CellarFill = ({bottles, capacity, style}: CellarFillProps) => {
 
-    let label = `${bottles} bouteilles`;
+    const {t} = useTranslation();
+    let label = format(t('bottleSum'), bottles, bottles == 1 ? '' : 's');
 
     if (bottles == 0) {
-        label = "Aucune bouteille";
-    } else if (bottles == 1) {
-        label = `${bottles} bouteille`;
+        label = t('noBottles');
     }
 
     return <View style={{...styles.container, ...style}}>

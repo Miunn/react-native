@@ -79,7 +79,7 @@ export const Home = ({navigation, route}: HomeProps) => {
                 <Text style={{
                     fontSize: 20,
                     margin: 10
-                }}>{t('hello')} Dernières bouteilles enregistrées</Text>
+                }}>{t('lastSavedBottles')}</Text>
 
                 {bottles.map((bottle) => (
                     <BottleSummary
