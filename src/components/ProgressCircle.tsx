@@ -2,6 +2,7 @@ import React from "react";
 import {Canvas, vec, useFont} from "@shopify/react-native-skia";
 import {Ring} from "./Ring.tsx";
 import {ProgressText} from "./ProgressText.tsx";
+import {useTheme} from "react-native-paper";
 
 const color = (r: number, g: number, b: number) => `rgb(${r * 255}, ${g * 255}, ${b * 255})`;
 const fontSize = 32
@@ -15,6 +16,7 @@ interface ProgressCircleProps {
 
 export const ProgressCircle = ({size, strokeWidth, progress, duration}: ProgressCircleProps) => {
 
+    const theme = useTheme();
     const font = useFont(require("./../assets/fonts/Poppins/Poppins-Regular.ttf"), fontSize);
 
     const center = vec(size / 2, size / 2);
@@ -39,6 +41,7 @@ export const ProgressCircle = ({size, strokeWidth, progress, duration}: Progress
             <ProgressText
                 progress={progress}
                 font={font}
+                textColor={theme.colors.onBackground}
                 centerX={size/2}
                 y={size/2 + fontSize/2 - 5}
                 duration={duration}

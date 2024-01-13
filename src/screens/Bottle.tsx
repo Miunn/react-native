@@ -1,13 +1,12 @@
-import {Image, Linking, Pressable, SafeAreaView, ScrollView, Text, View} from "react-native";
-import {Appbar} from "react-native-paper";
+import {Image, Linking, Pressable, SafeAreaView, ScrollView, View} from "react-native";
+import {Appbar, useTheme, Text} from "react-native-paper";
 import React, {useCallback, useEffect} from "react";
 import {BottleType} from "../models/BottleType.tsx";
-import {useTheme} from "@react-navigation/native";
 import {useCameraPermission} from "react-native-vision-camera";
 
 const Bottle = ({navigation, route}: any) => {
 
-    const {colors} = useTheme();
+    const theme = useTheme();
     const bottle: BottleType = route.params.bottle;
     const imageUri = bottle.imageUri !== undefined ? bottle.imageUri : "";
     const {hasPermission, requestPermission} = useCameraPermission();
@@ -45,7 +44,7 @@ const Bottle = ({navigation, route}: any) => {
     }, [navigation]);
 
     return (
-        <SafeAreaView style={{flex: 1}}>
+        <SafeAreaView style={{flex: 1, backgroundColor: theme.colors.background}}>
             <Appbar.Header>
                 <Appbar.BackAction onPress={() => navigation.goBack()}/>
                 <Appbar.Content title={bottle.name}/>
@@ -70,17 +69,11 @@ const Bottle = ({navigation, route}: any) => {
                     </Pressable>
 
                     <View>
-                        <Text style={{
-                            color: colors.text
-                        }}>{bottle.name}</Text>
-                        <Text style={{
-                            color: colors.text
-                        }}>{bottle.vintageYear}</Text>
+                        <Text>{bottle.name}</Text>
+                        <Text>{bottle.vintageYear}</Text>
                     </View>
                 </View>
-                <Text style={{
-                    color: colors.text
-                }}>Description</Text>
+                <Text>Description</Text>
             </ScrollView>
         </SafeAreaView>
     )

@@ -1,6 +1,6 @@
 import BottlesList from "../components/BottlesList.tsx";
 import React, {useState} from "react";
-import {Appbar, FAB, Searchbar} from "react-native-paper";
+import {Appbar, FAB, Searchbar, useTheme} from "react-native-paper";
 import {SafeAreaView, ScrollView, StatusBar, StyleSheet} from "react-native";
 import {NavigationProp} from "@react-navigation/native";
 
@@ -11,10 +11,11 @@ interface BottlesProps {
 
 const Bottles = ({navigation, route}: BottlesProps) => {
 
+    const theme = useTheme();
     const [searchQuery, setSearchQuery] = useState("");
 
     return (
-        <SafeAreaView style={{flex: 1}}>
+        <SafeAreaView style={{flex: 1, backgroundColor: theme.colors.background}}>
             <Appbar.Header>
                 <Appbar.Content title={route.params.title}/>
                 <Appbar.Action icon="magnify" onPress={() => {

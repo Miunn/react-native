@@ -4,8 +4,8 @@ import {SafeAreaView, ScrollView, StyleSheet, Text, View} from "react-native";
 import CellarFill from "../components/CellarFill.tsx";
 import WineRowSummary from "../components/WineRowSummary.tsx";
 import {BottleSummary} from "../components/BottleSummary.tsx";
-import {Appbar, FAB, PaperProvider} from "react-native-paper";
-import {NavigationProp, useIsFocused, useTheme} from "@react-navigation/native";
+import {Appbar, FAB, useTheme} from "react-native-paper";
+import {NavigationProp, useIsFocused} from "@react-navigation/native";
 import {getBottles, getDBConnection, initDB} from "../services/db-interface.ts";
 import {BottleType} from "../models/BottleType.tsx";
 import CellarSummary from "../components/CellarSummary.tsx";
@@ -18,6 +18,7 @@ interface HomeProps {
 
 export const Home = ({navigation, route}: HomeProps) => {
 
+    const theme = useTheme();
     const isFocused = useIsFocused();
     const {colors} = useTheme();
 
@@ -37,7 +38,6 @@ export const Home = ({navigation, route}: HomeProps) => {
     const bottleAmount = (color: string): number => {
         let amount = 0
         for (let bottle of bottles) {
-            console.log(bottle)
             if (bottle.color === color) {
                 amount++
             }
@@ -49,7 +49,7 @@ export const Home = ({navigation, route}: HomeProps) => {
         loadBottlesCallback();
     }, [loadBottlesCallback, isFocused]);
 
-    return <SafeAreaView style={{flex: 1}}>
+    return <SafeAreaView style={{flex: 1, backgroundColor: theme.colors.background}}>
         <Appbar.Header>
             <Appbar.Content title={route.params.title}/>
             <Appbar.Action icon="magnify" onPress={() => {
@@ -75,7 +75,6 @@ export const Home = ({navigation, route}: HomeProps) => {
 
             <View>
                 <Text style={{
-                    color: colors.text,
                     fontSize: 20,
                     margin: 10
                 }}>Dernières bouteilles enregistrées</Text>

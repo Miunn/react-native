@@ -1,8 +1,7 @@
-import {SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, View} from "react-native";
+import {SafeAreaView, ScrollView, StyleSheet, View} from "react-native";
 import {NativeStackScreenProps} from "react-native-screens/native-stack";
-import {useTheme} from "@react-navigation/native";
 import React, {useState} from "react";
-import {TextInput, RadioButton, FAB, Snackbar, Appbar} from "react-native-paper";
+import {TextInput, RadioButton, FAB, Snackbar, Appbar, useTheme, Text} from "react-native-paper";
 import {getDBConnection, initDB, insertBottles} from "../services/db-interface.ts";
 
 interface AddBottleProps {
@@ -11,6 +10,7 @@ interface AddBottleProps {
 }
 
 const AddBottle = ({navigation}: NativeStackScreenProps<any>) => {
+    const theme = useTheme();
     const {colors} = useTheme();
 
     const [name, setName] = useState("");
@@ -41,7 +41,7 @@ const AddBottle = ({navigation}: NativeStackScreenProps<any>) => {
         navigation.goBack();
     }
 
-    return <SafeAreaView style={{flex: 1}}>
+    return <SafeAreaView style={{flex: 1, backgroundColor: theme.colors.background}}>
         <Appbar.Header>
             <Appbar.BackAction onPress={() => navigation.goBack()}/>
             <Appbar.Content title={"Ajouter une bouteille"}/>
@@ -71,27 +71,18 @@ const AddBottle = ({navigation}: NativeStackScreenProps<any>) => {
                 <View style={styles.radioContainer}>
                     <View style={styles.radioContainer}>
                         <RadioButton value={'red'}/>
-                        <Text
-                            style={{
-                                color: colors.text
-                            }}>Rouge</Text>
+                        <Text>Rouge</Text>
                     </View>
 
                     <View style={styles.radioContainer}>
                         <RadioButton value={'white'}/>
-                        <Text
-                            style={{
-                                color: colors.text
-                            }}>
+                        <Text>
                             Blanc</Text>
                     </View>
 
                     <View style={styles.radioContainer}>
                         <RadioButton value={'pink'}/>
-                        <Text
-                            style={{
-                                color: colors.text
-                            }}>Rosé</Text>
+                        <Text>Rosé</Text>
                     </View>
                 </View>
             </RadioButton.Group>

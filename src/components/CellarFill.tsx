@@ -1,7 +1,7 @@
-import {StyleSheet, Text, View} from "react-native";
+import {StyleSheet, View} from "react-native";
 import {ProgressCircle} from "./ProgressCircle.tsx";
 import React from "react";
-import {useTheme} from "@react-navigation/native";
+import {Text} from "react-native-paper";
 
 interface CellarFillProps {
     bottles: number,
@@ -10,8 +10,6 @@ interface CellarFillProps {
 }
 
 const CellarFill = ({bottles, capacity, style}: CellarFillProps) => {
-
-    const { colors } = useTheme();
 
     let label = `${bottles} bouteilles`;
 
@@ -30,7 +28,6 @@ const CellarFill = ({bottles, capacity, style}: CellarFillProps) => {
         />
 
         <Text style={{
-            color: colors.text,
             fontSize: 30
         }}>{label}</Text>
     </View>
