@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {Home} from "./src/screens/Home.tsx";
-import {DefaultTheme, NavigationContainer} from "@react-navigation/native";
+import {NavigationContainer, DefaultTheme, DarkTheme} from "@react-navigation/native";
 import {createStackNavigator} from '@react-navigation/stack';
 import AddBottle from "./src/screens/AddBottle.tsx";
 import Bottle from "./src/screens/Bottle.tsx";
@@ -59,10 +59,18 @@ function App(): React.JSX.Element {
 
     const Tab = createMaterialBottomTabNavigator();
 
+    const Theme = {
+        ...DefaultTheme,
+        colors: {
+            ...DefaultTheme.colors,
+            background: '#000000', // Here you set the background color
+        },
+    };
+
     return (
         <SafeAreaProvider>
             <PaperProvider>
-                <NavigationContainer>
+                <NavigationContainer theme={Theme}>
                     <Tab.Navigator screenOptions={({route}) => ({
                         headerShown: false,
                         tabBarIcon: ({focused, color}) => {
