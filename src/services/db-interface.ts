@@ -10,7 +10,7 @@ export const getDBConnection = async () => {
 
 export const initDB = async (db: SQLiteDatabase) => {
     // create table if not exists
-    await initTable(db, "Bottles", "name TEXT NOT NULL, vintageYear INTEGER NOT NULL, color TEXT NOT NULL, imageUri TEXT");
+    await initTable(db, "Bottles", "name TEXT NOT NULL, signature TEXT, vintageYear INTEGER NOT NULL, color TEXT NOT NULL, imageUri TEXT");
 };
 
 export const initTable = async (db: SQLiteDatabase, tableName: string, schema: string) => {

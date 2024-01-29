@@ -3,9 +3,12 @@ import {Appbar, useTheme, Text} from "react-native-paper";
 import React, {useCallback, useEffect} from "react";
 import {BottleType} from "../models/BottleType.tsx";
 import {useCameraPermission} from "react-native-vision-camera";
+import {useTranslation} from "react-i18next";
+import {useFont} from "@shopify/react-native-skia";
 
 const Bottle = ({navigation, route}: any) => {
 
+    const {t} = useTranslation();
     const theme = useTheme();
     const bottle: BottleType = route.params.bottle;
     const imageUri = bottle.imageUri !== undefined ? bottle.imageUri : "";
@@ -50,7 +53,14 @@ const Bottle = ({navigation, route}: any) => {
                 <Appbar.Content title={bottle.name}/>
             </Appbar.Header>
 
-            <ScrollView>
+            <ScrollView style={{
+                margin: 10
+            }}>
+                <Text style={{
+                    fontFamily: "AlexBrush-Regular",
+                    fontSize: 40
+                }}>{bottle.name}</Text>
+
                 <View style={{
                     flexDirection: "row",
                     alignItems: "center",
@@ -69,11 +79,11 @@ const Bottle = ({navigation, route}: any) => {
                     </Pressable>
 
                     <View>
-                        <Text>{bottle.name}</Text>
+                        {bottle.signature ? <Text>{bottle.signature}</Text> : <Text style={{fontStyle: "italic"}}>{t('emptySignature')}</Text>}
                         <Text>{bottle.vintageYear}</Text>
                     </View>
                 </View>
-                <Text>Description</Text>
+                <Text style={{margin: 20}}>Description</Text>
             </ScrollView>
         </SafeAreaView>
     )

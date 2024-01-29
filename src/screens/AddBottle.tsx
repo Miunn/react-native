@@ -16,6 +16,7 @@ const AddBottle = ({navigation}: NativeStackScreenProps<any>) => {
     const {colors} = useTheme();
 
     const [name, setName] = useState("");
+    const [signature, setSignature] = useState("");
     const [vintageYear, setVintageYear] = useState("");
     const [color, setColor] = useState('red');
 
@@ -37,6 +38,7 @@ const AddBottle = ({navigation}: NativeStackScreenProps<any>) => {
         await initDB(db);
         await insertBottles(db, [{
             name: name,
+            signature: signature,
             vintageYear: parseInt(vintageYear),
             color: color
         }]);
@@ -57,6 +59,13 @@ const AddBottle = ({navigation}: NativeStackScreenProps<any>) => {
                 style={styles.inputs}
             />
             <TextInput
+                label={t('signature')}
+                value={name}
+                onChangeText={setSignature}
+                mode={"outlined"}
+                style={styles.inputs}
+            />
+            <TextInput
                 label={t('bottleYear')}
                 inputMode={"numeric"}
                 keyboardType={"numeric"}
@@ -70,7 +79,7 @@ const AddBottle = ({navigation}: NativeStackScreenProps<any>) => {
             <RadioButton.Group
                 onValueChange={setColor}
                 value={color}>
-                <View style={styles.radioContainer}>
+                <View style={styles.inputs}>
                     <View style={styles.radioContainer}>
                         <RadioButton value={'red'}/>
                         <Text>{t('redWine')}</Text>

@@ -1,5 +1,4 @@
 import {StyleSheet, View} from "react-native";
-import IconRoundedRectangle from "./IconRoundedRectangle.tsx";
 import {Chip} from "react-native-paper";
 import {useTranslation} from "react-i18next";
 
