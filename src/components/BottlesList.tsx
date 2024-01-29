@@ -10,7 +10,7 @@ const BottlesList = ({navigation}: any) => {
     const {colors} = useTheme();
 
     const [bottles, setBottles] = useState<BottleType[]>([]);
-    const loadBottlesCallback = useCallback(async () => {
+    const loadBottlesCallback = async () => {
         try {
             const db = await getDBConnection();
             await initDB(db);
@@ -19,11 +19,11 @@ const BottlesList = ({navigation}: any) => {
         } catch (err) {
             console.error(err);
         }
-    }, []);
+    };
 
     useEffect(() => {
         loadBottlesCallback();
-    }, [loadBottlesCallback, isFocused, bottles]);
+    }, [isFocused]);
 
     return (
         <ScrollView>

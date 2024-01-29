@@ -26,7 +26,7 @@ export const Home = ({navigation, route}: HomeProps) => {
 
     const [capacity, setCapacity] = useState(50);
     const [bottles, setBottles] = useState<BottleType[]>([]);
-    const loadBottlesCallback = useCallback(async () => {
+    const loadBottlesCallback = async () => {
         try {
             const db = await getDBConnection();
             await initDB(db);
@@ -35,7 +35,7 @@ export const Home = ({navigation, route}: HomeProps) => {
         } catch (err) {
             console.error(err);
         }
-    }, []);
+    };
 
     const bottleAmount = (color: string): number => {
         let amount = 0
@@ -48,8 +48,10 @@ export const Home = ({navigation, route}: HomeProps) => {
     }
 
     useEffect(() => {
-        loadBottlesCallback();
-    }, [loadBottlesCallback, isFocused]);
+        if (isFocused) {
+            loadBottlesCallback();
+        }
+    }, [isFocused]);
 
     return <SafeAreaView style={{flex: 1, backgroundColor: theme.colors.background}}>
         <Appbar.Header>

@@ -19,6 +19,12 @@ export const initTable = async (db: SQLiteDatabase, tableName: string, schema: s
     await db.executeSql(query);
 };
 
+export const dropTable = async (db: SQLiteDatabase, tableName: string) => {
+    const query = `DROP TABLE IF EXISTS ${tableName};`;
+
+    await db.executeSql(query);
+}
+
 export const getBottles = async (db:SQLiteDatabase): Promise<BottleType[]> => {
     const query = "SELECT rowid, * FROM Bottles";
 
@@ -32,6 +38,7 @@ export const getBottles = async (db:SQLiteDatabase): Promise<BottleType[]> => {
                 bottles.push({
                     id: item.rowid,
                     name: item.name,
+                    signature: item.signature,
                     vintageYear: item.vintageYear,
                     color: item.color,
                     imageUri: item.imageUri
@@ -39,6 +46,7 @@ export const getBottles = async (db:SQLiteDatabase): Promise<BottleType[]> => {
             }
         });
 
+        console.log(bottles);
         return bottles;
     } catch (e) {
         console.error(e);
@@ -47,8 +55,8 @@ export const getBottles = async (db:SQLiteDatabase): Promise<BottleType[]> => {
 };
 
 export const insertBottles = async (db: SQLiteDatabase, bottles: BottleType[]): Promise<[ResultSet]> => {
-    const query = `INSERT OR REPLACE INTO Bottles(name, vintageYear, color) VALUES` +
-        bottles.map(b => `('${b.name}', '${b.vintageYear}', '${b.color}')`).join(',');
+    const query = `INSERT OR REPLACE INTO Bottles(name, signature, vintageYear, color) VALUES` +
+        bottles.map(b => `('${b.name}', '${b.signature}', '${b.vintageYear}', '${b.color}')`).join(',');
 
     return db.executeSql(query);
 }

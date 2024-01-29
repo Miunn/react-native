@@ -18,7 +18,6 @@ const Bottle = ({navigation, route}: any) => {
         navigation.getParent()?.setOptions({
             tabBarStyle: { display: 'none' },
         });
-        console.log("Hide");
     }, []);
 
     const getCameraView = async () => {

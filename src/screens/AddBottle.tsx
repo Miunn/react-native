@@ -60,7 +60,7 @@ const AddBottle = ({navigation}: NativeStackScreenProps<any>) => {
             />
             <TextInput
                 label={t('signature')}
-                value={name}
+                value={signature}
                 onChangeText={setSignature}
                 mode={"outlined"}
                 style={styles.inputs}
