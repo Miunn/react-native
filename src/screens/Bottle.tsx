@@ -21,7 +21,7 @@ const Bottle = ({navigation, route}: any) => {
     }, []);
 
     const cameraCallback = async (data: any) => {
-        const media = data.media;
+        const media: MediaType = data.media;
         setBottle({
             id: bottle.id,
             name: bottle.name,
@@ -87,19 +87,22 @@ const Bottle = ({navigation, route}: any) => {
                     flexDirection: "row",
                     alignItems: "center",
                     gap: 10,
+
+                    backgroundColor: 'red'
                 }}>
 
                     <Pressable
                         onPress={getCameraView}
                         style={{
-                            width: 175,
-                            height: 175,
+                            backgroundColor: 'red',
                             justifyContent: "center",
                             alignItems: "center"
                         }}
                     >
                         {bottle.imageUri !== null ?
-                            <Image style={{width: '100%', height: '100%'}} source={{uri: 'file://' + bottle.imageUri}} />
+                            <Image style={{
+                                width: 150,
+                                height: 150,}} source={{uri: 'file://' + bottle.imageUri}} />
                             :
                             <Icon source={"camera"} size={50}/>
                         }
