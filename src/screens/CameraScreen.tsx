@@ -3,14 +3,12 @@ import {
     PhotoFile,
     useCameraDevice,
     useCameraFormat,
-    useCameraPermission,
     VideoFile
 } from "react-native-vision-camera";
-import {Dimensions, Platform, StyleSheet, Text, View} from "react-native";
+import {StyleSheet, Text, View} from "react-native";
 import {useIsFocused} from "@react-navigation/native";
 import {useAppState} from "@react-native-community/hooks";
 import {useCallback, useEffect, useMemo, useRef, useState} from "react";
-import StaticSafeAreaInsets from 'react-native-static-safe-area-insets';
 import Reanimated, {
     Extrapolate,
     interpolate,

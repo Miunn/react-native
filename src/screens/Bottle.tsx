@@ -1,5 +1,5 @@
 import {Image, Linking, Pressable, SafeAreaView, ScrollView, View} from "react-native";
-import {Appbar, useTheme, Text} from "react-native-paper";
+import {Appbar, useTheme, Text, Icon} from "react-native-paper";
 import React, {useCallback, useEffect} from "react";
 import {BottleType} from "../models/BottleType.tsx";
 import {useCameraPermission} from "react-native-vision-camera";
@@ -74,7 +74,7 @@ const Bottle = ({navigation, route}: any) => {
                             alignItems: "center"
                         }}
                     >
-                        <Image source={require('../assets/add_a_photo.png')}/>
+                        <Icon source={"camera"} size={50}/>
                     </Pressable>
 
                     <View>

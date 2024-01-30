@@ -22,7 +22,9 @@ const BottlesList = ({navigation}: any) => {
     };
 
     useEffect(() => {
-        loadBottlesCallback();
+        if (isFocused) {
+            loadBottlesCallback();
+        }
     }, [isFocused]);
 
     return (

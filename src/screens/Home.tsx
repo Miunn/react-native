@@ -5,12 +5,12 @@ import CellarFill from "../components/CellarFill.tsx";
 import WineRowSummary from "../components/WineRowSummary.tsx";
 import {BottleSummary} from "../components/BottleSummary.tsx";
 import {Appbar, FAB, useTheme} from "react-native-paper";
-import {NavigationProp, useIsFocused} from "@react-navigation/native";
+import {useIsFocused} from "@react-navigation/native";
 import {getBottles, getDBConnection, initDB} from "../services/db-interface.ts";
 import {BottleType} from "../models/BottleType.tsx";
 import CellarSummary from "../components/CellarSummary.tsx";
 import {NativeStackNavigationProp} from "@react-navigation/native-stack";
-import {useTranslation, withTranslation} from "react-i18next";
+import {useTranslation} from "react-i18next";
 
 interface HomeProps {
     navigation: NativeStackNavigationProp<any>,
