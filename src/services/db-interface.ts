@@ -54,9 +54,17 @@ export const getBottles = async (db:SQLiteDatabase): Promise<BottleType[]> => {
     }
 };
 
-export const insertBottles = async (db: SQLiteDatabase, bottles: BottleType[]): Promise<[ResultSet]> => {
-    const query = `INSERT OR REPLACE INTO Bottles(name, signature, vintageYear, color) VALUES` +
-        bottles.map(b => `('${b.name}', '${b.signature}', '${b.vintageYear}', '${b.color}')`).join(',');
+export const insertBottles = (db: SQLiteDatabase, bottles: BottleType[]): Promise<[ResultSet]> => {
+    const query = `INSERT OR REPLACE INTO Bottles(name, signature, vintageYear, color, imageUri) VALUES` +
+        bottles.map(b => `('${b.name}', '${b.signature}', '${b.vintageYear}', '${b.color}', '${b.imageUri}')`).join(',');
+
+    return db.executeSql(query);
+}
+
+export const updateBottle = (db: SQLiteDatabase, bottle: BottleType): Promise<[ResultSet]> => {
+    const query = `UPDATE Bottles SET name='${bottle.name}', signature='${bottle.signature}', vintageYear=${bottle.vintageYear}, color='${bottle.color}', imageUri='${bottle.imageUri}' WHERE rowid=${bottle.id};`;
+
+    console.log(`update bottle ${JSON.stringify(bottle)}`);
 
     return db.executeSql(query);
 }

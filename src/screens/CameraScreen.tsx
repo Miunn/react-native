@@ -5,8 +5,8 @@ import {
     useCameraFormat,
     VideoFile
 } from "react-native-vision-camera";
-import {StyleSheet, Text, View} from "react-native";
-import {useIsFocused} from "@react-navigation/native";
+import {DeviceEventEmitter, StyleSheet, Text, View} from "react-native";
+import {NavigationProp, useIsFocused, useNavigationContainerRef} from "@react-navigation/native";
 import {useAppState} from "@react-native-community/hooks";
 import {useCallback, useEffect, useMemo, useRef, useState} from "react";
 import Reanimated, {
@@ -25,7 +25,6 @@ import {
     SCREEN_HEIGHT,
     SCREEN_WIDTH
 } from "../Constants.ts";
-import {NativeStackScreenProps} from "react-native-screens/native-stack";
 import {CaptureButton} from "../components/camera/CaptureButton.tsx";
 import { PressableOpacity } from 'react-native-pressable-opacity';
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons'
@@ -38,7 +37,7 @@ Reanimated.addWhitelistedNativeProps({
 
 const SCALE_FULL_ZOOM = 3;
 
-const CameraScreen = ({navigation}: NativeStackScreenProps<any>) => {
+const CameraScreen = ({navigation, route}: any) => {
 
     const camera = useRef<Camera>(null);
     const [cameraPosition, setCameraPosition] = useState<'front' | 'back'>('back');
@@ -81,10 +80,8 @@ const CameraScreen = ({navigation}: NativeStackScreenProps<any>) => {
     }, [maxZoom, minZoom, zoom]);
 
     const onInitialized = useCallback(() => {
-        console.log('Camera initialized!')
         setIsCameraInitialized(true);
         setIsActive(isFocused && appState === "active");
-        console.log("Set active to", isFocused && appState === "active");
     }, [isFocused, appState]);
 
     const onPinchGesture = useAnimatedGestureHandler<PinchGestureHandlerGestureEvent, { startZoom?: number }>({
@@ -119,13 +116,12 @@ const CameraScreen = ({navigation}: NativeStackScreenProps<any>) => {
 
     const onMediaCaptured = useCallback(
         (media: PhotoFile | VideoFile, type: 'photo' | 'video') => {
-            console.log(`Media captured! ${JSON.stringify(media)}`)
-            /*navigation.navigate('MediaPage', {
-                path: media.path,
-                type: type,
-            });*/
+            console.log(`Media captured! ${JSON.stringify(media)}`);
+            DeviceEventEmitter.emit("event.mediaCaptured", {media});
+
+            navigation.goBack();
         },
-        [/*navigation*/],
+        [navigation],
     );
 
     const onError = useCallback((error: CameraRuntimeError) => {

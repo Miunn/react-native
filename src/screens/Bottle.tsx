@@ -1,17 +1,17 @@
-import {Image, Linking, Pressable, SafeAreaView, ScrollView, View} from "react-native";
+import {DeviceEventEmitter, Image, Linking, Pressable, SafeAreaView, ScrollView, View} from "react-native";
 import {Appbar, useTheme, Text, Icon} from "react-native-paper";
-import React, {useCallback, useEffect} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {BottleType} from "../models/BottleType.tsx";
 import {useCameraPermission} from "react-native-vision-camera";
 import {useTranslation} from "react-i18next";
-import {useFont} from "@shopify/react-native-skia";
+import {MediaType} from "../models/MediaType.tsx";
+import {getDBConnection, updateBottle} from "../services/db-interface.ts";
 
 const Bottle = ({navigation, route}: any) => {
 
     const {t} = useTranslation();
     const theme = useTheme();
-    const bottle: BottleType = route.params.bottle;
-    const imageUri = bottle.imageUri !== undefined ? bottle.imageUri : "";
+    const [bottle, setBottle] = useState<BottleType>(route.params.bottle);
     const {hasPermission, requestPermission} = useCameraPermission();
 
     useEffect(() => {
@@ -20,7 +20,23 @@ const Bottle = ({navigation, route}: any) => {
         });
     }, []);
 
+    const cameraCallback = async (data: any) => {
+        const media = data.media;
+        setBottle({
+            id: bottle.id,
+            name: bottle.name,
+            signature: bottle.signature,
+            vintageYear: bottle.vintageYear,
+            color: bottle.color,
+            imageUri: media.path
+        });
+
+        DeviceEventEmitter.removeAllListeners("event.mediaCaptured");
+    }
+
     const getCameraView = async () => {
+        DeviceEventEmitter.removeAllListeners("event.mediaCaptured");
+        DeviceEventEmitter.addListener("event.mediaCaptured", cameraCallback);
         if (hasPermission) {
             navigation.navigate("camera");
         } else {
@@ -45,6 +61,13 @@ const Bottle = ({navigation, route}: any) => {
         });
     }, [navigation]);
 
+    useEffect(() => {
+        getDBConnection()
+            .then(db => {
+                updateBottle(db, bottle);
+            });
+    }, [bottle]);
+
     return (
         <SafeAreaView style={{flex: 1, backgroundColor: theme.colors.background}}>
             <Appbar.Header>
@@ -65,6 +88,7 @@ const Bottle = ({navigation, route}: any) => {
                     alignItems: "center",
                     gap: 10,
                 }}>
+
                     <Pressable
                         onPress={getCameraView}
                         style={{
@@ -74,7 +98,11 @@ const Bottle = ({navigation, route}: any) => {
                             alignItems: "center"
                         }}
                     >
-                        <Icon source={"camera"} size={50}/>
+                        {bottle.imageUri !== null ?
+                            <Image style={{width: '100%', height: '100%'}} source={{uri: 'file://' + bottle.imageUri}} />
+                            :
+                            <Icon source={"camera"} size={50}/>
+                        }
                     </Pressable>
 
                     <View>
